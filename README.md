@@ -1,4 +1,4 @@
-carseekers
+CarSeekers
 ==========
 
 Car Auction WebApp
