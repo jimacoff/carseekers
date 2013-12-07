@@ -14,6 +14,7 @@ source 'https://rubygems.org'
   gem 'underscore-rails'
   gem 'jbuilder', '~> 1.2'
   gem 'devise'
+  gem 'omniauth-google-oauth2'
 
   # Schema info in models
   gem 'annotate'
