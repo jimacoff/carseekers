@@ -28,6 +28,7 @@ group :development, :test do
   gem "better_errors"
   gem 'pry'
   gem 'pry-byebug'
+  gem 'binding_of_caller'
 
   #Testing
   gem 'factory_girl'
