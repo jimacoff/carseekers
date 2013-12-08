@@ -1,0 +1,21 @@
+.wrapper {
+  width: 100%;
+  border-left: 0.1rem solid black;
+  border-right: 0.1rem solid black;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  color: #F1F1F1;
+  background-color: #003F76;
+  padding: 20px 0 14.75rem 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  &:hover {
+        color:#003F76;
+    }
+}

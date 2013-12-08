@@ -12,8 +12,13 @@
   </head>
 
   <body>
-
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+    <div class="wrapper">
+        <%= render '/shared/nav' %>
+          <%= yield %>
+          <%= javascript_include_tag "application" %>
+      <footer class="large-12 large-centered columns footer">
+          <%= render '/shared/footer' %>
+      </footer>
+    </div>
   </body>
 </html>

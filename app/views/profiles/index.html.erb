@@ -1,12 +1,19 @@
-<h1>User Information</h1>
-
-  <%= image_tag gravatar_picture_url(@profile.user, 200) %>
-
-Nick: <%= @profile.user.nick %>
-Name: <%= @profile.user.name %>
-Email: <%= @profile.user.email %>
-
-Bio: <%= @profile.bio %>
-
-
-<%= link_to_if current_user, "Edit", edit_user_profile_path(current_user, current_user.profile) %>
+<div class="row">
+  <h1><strong><em><%= @profile.user.nick %></em></strong> Profile</h1>
+  <section class="large-12 large-centered columns profile">
+    <div class="row">
+      <div class="medium-2 columns">
+        <%= image_tag gravatar_picture_url(@profile.user, 150), :class => "profile-picture right" %>
+      </div>
+      <div class="large-9 small-offset-1 columns left bio">
+        <%= link_to_if current_user, "Edit", edit_user_profile_path(current_user, current_user.profile), :class => "profile-edit" %>
+        <dl>
+          <dd>Nick: <%= @profile.user.nick %></dd>
+          <dd>Name: <%= @profile.user.name %></dd>
+          <dd>Email: <%= @profile.user.email %></dd>
+          <dd>Bio: <%= @profile.bio %></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,13 +1,9 @@
-<h1>CarSeekers</h1>
+<div class="row">
 
-<h3><%= "Hello, " + current_user.nick if current_user %></h3>
-</br>
-<%= link_to "Sign in with your Google account", user_omniauth_authorize_path(:google_oauth2) %>
-||
-<%= link_to "Sign up with your Google account", user_omniauth_authorize_path(:google_oauth2) %>
-||
-<%= link_to "Sign up", new_user_registration_path %>
-||
-<%= link_to "Sign in", new_user_session_path %>
-||
-<%= link_to "Sign out", destroy_user_session_path %>
+  <section class="large-12 large-centered columns">
+    <div class="large-10 large-centered columns search-box">
+      <h2>Find your new auto here!</h2>
+    </div>
+  </section>
+
+</div>
