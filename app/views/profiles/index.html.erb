@@ -1,5 +1,7 @@
 <h1>User Information</h1>
 
+  <%= image_tag gravatar_picture_url(@profile.user, 200) %>
+
 Nick: <%= @profile.user.nick %>
 Name: <%= @profile.user.name %>
 Email: <%= @profile.user.email %>
