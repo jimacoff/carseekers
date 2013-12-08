@@ -3,8 +3,17 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <% if session["devise.google_data"] %>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true, :value => session["devise.google_data"].info.email if session["devise.google_data"] %></div>
+    <div><%= f.label :name %><br />
+    <%= f.text_field :name, :value => session["devise.google_data"].info.name %></div>
+  <% else %>
+    <div><%= f.label :email %><br />
+    <%= f.email_field :email, :autofocus => true %>
+    <div><%= f.label :name %><br />
+    <%= f.text_field :name %></div>
+  <% end %>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>

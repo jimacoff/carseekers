@@ -15,6 +15,10 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  name                   :string(255)
+#  picture_url            :string(255)
+#  google_token           :string(255)
+#  google_id              :string(255)
 #
 # Indexes
 #
@@ -27,4 +31,16 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, :omniauth_providers => [:google_oauth2]
+
+  #Google OAuth2 Access Token
+  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
+      data = access_token.info
+      user = User.where(:email => data["email"]).first
+      unless user
+          user = User.new
+      end
+      user
+  end
+
 end

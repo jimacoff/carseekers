@@ -33,4 +33,8 @@ Carseekers::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  #Google Keys for Devise OAuth2
+  config.google_app_id = "215933734228-r84fbefpidgvbaj6fb8ci6qk40ff4e9g.apps.googleusercontent.com"
+  config.google_app_secret = "-hI1fayWcBjcfld9siUXa9C7"
 end
