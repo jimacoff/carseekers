@@ -12,6 +12,5 @@ Given(/^he clicks on "(.*?)"$/) do |link|
 end
 
 Then(/^he should be logged in$/) do
-  save_and_open_page
   expect(page).to have_content @user.nick
 end
