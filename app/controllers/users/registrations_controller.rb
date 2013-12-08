@@ -8,7 +8,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         :google_id => session["devise.google_data"].uid,
         :google_token => session["devise.google_data"].credentials.token,
         :picture_url => session["devise.google_data"].info.image,
-        :name => session["devise.google_data"].info.name
+        :name => session["devise.google_data"].info.name,
+        :nick => sign_up_params[:nick]
       )
     else
       build_resource(

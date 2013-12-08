@@ -1,5 +1,10 @@
 <h1>User Information</h1>
 
-Nick: <%= @user.nick %>
-Name: <%= @user.name %>
-Email: <%= @user.email %>
+Nick: <%= @profile.user.nick %>
+Name: <%= @profile.user.name %>
+Email: <%= @profile.user.email %>
+
+Bio: <%= @profile.bio %>
+
+
+<%= link_to_if current_user, "Edit", edit_user_profile_path(current_user, current_user.profile) %>

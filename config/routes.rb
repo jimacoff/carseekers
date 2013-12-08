@@ -6,6 +6,6 @@ Carseekers::Application.routes.draw do
   #Standard Routes
   root 'pages#index'
   resources :users do
-    resources :profiles, :only => [:index, :show, :update, :edit]
+    resources :profiles, :only => [:index, :show, :edit, :update]
   end
 end
