@@ -9,6 +9,7 @@ end
 Given(/^he fills in all the information needed$/) do
   @user = User.make!
   step 'he enters "@user.email" into the "Email"'
+  step 'he enters "@user.nick" into the "Nick"'
   step 'he enters "password" into the "Password"'
   step 'he enters "password" into the "Password confirmation"'
 end

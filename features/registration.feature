@@ -1,5 +1,6 @@
 Feature: Registration
 
+  @wip
   Scenario: A User signs up
     Given that a user is on the registration page
     And he fills in all the information needed
