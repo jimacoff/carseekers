@@ -27,6 +27,10 @@
 #
 
 class User < ActiveRecord::Base
+
+  #Associations
+  has_one :profile
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -35,6 +39,13 @@ class User < ActiveRecord::Base
 
   #validation
   validates_uniqueness_of :nick
+
+  #Creates profile and association automatically
+  after_create do
+    unless self.profile
+      Profile.create(:user_id => self.id)
+    end
+  end
 
   #Google OAuth2 Access Token
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
