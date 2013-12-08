@@ -1,5 +1,7 @@
 CarSeekers
 
+Hello, <%= current_user.nick if current_user %>
+</br>
 <%= link_to "Sign in with your Google account", user_omniauth_authorize_path(:google_oauth2) %>
 ||
 <%= link_to "Sign up with your Google account", user_omniauth_authorize_path(:google_oauth2) %>
