@@ -19,8 +19,9 @@ source 'https://rubygems.org'
   # Schema info in models
   gem 'annotate'
 
-  # Edmunds Api
+  # Api's
   gem 'edmunds_ruby'
+  gem 'gravatar-ultimate'
 
 group :development, :test do
 
