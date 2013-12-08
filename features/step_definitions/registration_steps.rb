@@ -26,3 +26,4 @@ Then(/^he should be sent to the index page$/) do
   visit root_path
   expect(page).to have_content 'CarSeekers'
 end
+

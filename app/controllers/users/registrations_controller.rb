@@ -1,14 +1,23 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
-    build_resource(
-      :email => session["devise.google_data"].info.email,
-      :password => sign_up_params[:password],
-      :google_id => session["devise.google_data"].uid,
-      :google_token => session["devise.google_data"].credentials.token,
-      :picture_url => session["devise.google_data"].info.image,
-      :name => session["devise.google_data"].info.name
-    )
+    if session["devise.google_data"]
+      build_resource(
+        :email => session["devise.google_data"].info.email,
+        :password => sign_up_params[:password],
+        :google_id => session["devise.google_data"].uid,
+        :google_token => session["devise.google_data"].credentials.token,
+        :picture_url => session["devise.google_data"].info.image,
+        :name => session["devise.google_data"].info.name
+      )
+    else
+      build_resource(
+        :email => sign_up_params[:email],
+        :password => sign_up_params[:password],
+        :name => sign_up_params[:name],
+        :nick => sign_up_params[:nick]
+      )
+    end
     if resource.save
       yield resource if block_given?
       if resource.active_for_authentication?
@@ -27,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) << [:name, :picture_url, :google_token, :google_id]
+      devise_parameter_sanitizer.for(:sign_up) << [:name, :picture_url, :google_token, :google_id, :nick]
   end
 
 end
