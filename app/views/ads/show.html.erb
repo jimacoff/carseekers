@@ -1,0 +1,16 @@
+<div class="row">
+  <section class="large-9 columns">
+    <h1><%= @ad.title %></h1>
+    <p><%= @ad.description %></p>
+  </section>
+  <div class="large-3 columns right">
+    <div class="panel ad-user-info">
+    <h3>Seller Info:</h3>
+    <%= image_tag gravatar_picture_url(@ad.user, 120), :class => "ad-user-picture" %>
+    <dl>
+      <dd>Nick: <%= link_to @ad.user.nick, user_profiles_path(@ad.user) %></dd>
+      <dd>Contact</dd>
+    </dl>
+  </div>
+  </div>
+</div>

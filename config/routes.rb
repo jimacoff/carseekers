@@ -7,5 +7,6 @@ Carseekers::Application.routes.draw do
   root 'pages#index'
   resources :users do
     resources :profiles, :only => [:index, :show, :edit, :update]
+    resources :ads, :only => [:index, :new, :show, :create, :edit, :update]
   end
 end

@@ -5,3 +5,7 @@ User.blueprint do
   nick { Faker::Internet.user_name }
   password { "password" }
 end
+
+Ad.blueprint do
+  title { Faker::Lorem.words(rand(2..4)).join(' ') }
+end

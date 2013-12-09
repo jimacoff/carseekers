@@ -1,3 +1,12 @@
 // Place all the styles related to the Ads controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ad-user-info {
+  margin: 0.5rem 0 0.5rem 0;
+  background-color: #E3F6FF;
+
+  .ad-user-picture {
+    margin: 0.5rem 0 0.8rem 2rem;
+  }
+}
