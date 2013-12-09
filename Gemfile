@@ -15,13 +15,14 @@ source 'https://rubygems.org'
   gem 'jbuilder', '~> 1.2'
   gem 'devise'
   gem 'omniauth-google-oauth2'
+  gem 'gravatar-ultimate'
+  gem 'carrierwave'
 
   # Schema info in models
   gem 'annotate'
 
   # Api's
   gem 'edmunds_ruby'
-  gem 'gravatar-ultimate'
 
 group :development, :test do
 

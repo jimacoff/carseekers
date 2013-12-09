@@ -1,1 +1,7 @@
-<%= render :partial => 'edit_form', :locals => { :ad => @ad } %>
+<div class="row">
+  <section class="large-12 large-centered columns profile">
+    <h2>Edit Profile</h2>
+    <%= render :partial => 'edit_form', :locals => { :ad => @ad } %>
+    <%= link_to "Back", :back %>
+  </section>
+</div>

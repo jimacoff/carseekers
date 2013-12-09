@@ -20,7 +20,7 @@ class AdsController < ApplicationController
   def update
     @ad = Ad.find(params[:id])
     @ad.update_attributes(ad_params)
-    render :nothing => :true
+    render :show
   end
 
   private
