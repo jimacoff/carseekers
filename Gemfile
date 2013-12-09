@@ -17,7 +17,7 @@ source 'https://rubygems.org'
   gem 'omniauth-google-oauth2'
   gem 'gravatar-ultimate'
   gem 'carrierwave'
-
+  gem 'mini_magick'
   # Schema info in models
   gem 'annotate'
 

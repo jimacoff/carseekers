@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'carrierwave/test/matchers'
 
 describe AdsController do
 
@@ -45,5 +46,37 @@ describe AdsController do
       @ad.title.should eq(@new_title)
     end
   end
+
+  describe "Test CarrierWave" do
+
+    describe CarPhotoUploader do
+      include CarrierWave::Test::Matchers
+
+      before do
+        CarPhotoUploader.enable_processing = true
+        @uploader = CarPhotoUploader.new(@user, :avatar)
+        @uploader.store!(File.open("app/assets/images/car.jpg"))
+      end
+
+      after do
+        CarPhotoUploader.enable_processing = false
+        @uploader.remove!
+      end
+
+      context 'the thumb version' do
+        it "should scale down a landscape image to be exactly 64 by 64 pixels" do
+          @uploader.thumb.should have_dimensions(60, 60)
+        end
+      end
+
+      context 'the small version' do
+        it "should scale down a landscape image to fit within 200 by 200 pixels" do
+          @uploader.small.should be_no_larger_than(200, 200)
+        end
+      end
+
+    end
+  end
+
 
 end
