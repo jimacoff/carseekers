@@ -2,6 +2,15 @@
   <section class="large-9 columns">
     <h1><%= @ad.title %></h1>
     <p><%= @ad.description %></p>
+    <div class="row">
+      <section class="panel">
+        <ul class="clearing-thumbs" data-clearing>
+          <% @ad.images.each do |image| %>
+            <li><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>"></a></li>
+          <% end %>
+        </ul>
+      </section>
+    </div>
   </section>
   <div class="large-3 columns right">
     <div class="panel ad-user-info">

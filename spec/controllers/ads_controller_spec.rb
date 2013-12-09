@@ -64,8 +64,8 @@ describe AdsController do
       end
 
       context 'the thumb version' do
-        it "should scale down a landscape image to be exactly 64 by 64 pixels" do
-          @uploader.thumb.should have_dimensions(60, 60)
+        it "should scale down a landscape image to be exactly 130 by 130 pixels" do
+          @uploader.thumb.should have_dimensions(130, 130)
         end
       end
 

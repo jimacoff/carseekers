@@ -6,6 +6,7 @@ class AdsController < ApplicationController
 
   def new
     @ad = Ad.new
+    5.times { @ad.images << Image.new }
   end
 
   def create
@@ -25,6 +26,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :user_id)
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id])
   end
 end
