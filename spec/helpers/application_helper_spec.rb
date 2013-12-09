@@ -8,6 +8,6 @@ describe ApplicationHelper do
   end
 
   it "Should return the correct avatar from Gravatar" do
-    gravatar_picture_url(@user, @size).should eq("http://gravatar.com/avatar/#{@gravatar_id}.png?s=#{@size}&d=#{root_url}images/guest.png")
+    gravatar_picture_url(@user, @size).should eq("http://gravatar.com/avatar/#{@gravatar_id}.png?s=#{@size}&d=#{CGI.escape("http://test.host/assets/guest.png")}")
   end
 end

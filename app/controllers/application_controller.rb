@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   protected
   #Adds our non-standard fields to devise registration sanitizer
   def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:sign_up) << [:name, :picture_url, :google_token, :google_id]
+      devise_parameter_sanitizer.for(:sign_up) << [:name, :picture_url, :google_token, :google_id, :nick]
   end
 end

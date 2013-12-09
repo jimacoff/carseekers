@@ -38,6 +38,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
       devise_parameter_sanitizer.for(:sign_up) << [:name, :picture_url, :google_token, :google_id, :nick]
+      devise_parameter_sanitizer.for(:account_update) << [:name, :picture_url, :google_token, :google_id, :nick]
   end
 
 end

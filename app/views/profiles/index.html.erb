@@ -6,7 +6,7 @@
         <%= image_tag gravatar_picture_url(@profile.user, 150), :class => "profile-picture right" %>
       </div>
       <div class="large-9 small-offset-1 columns left bio">
-        <%= link_to_if current_user, "Edit", edit_user_profile_path(current_user, current_user.profile), :class => "profile-edit" %>
+        <%= link_to_if current_user, "Edit Profile", edit_user_profile_path(current_user, current_user.profile), :class => "profile-edit" %>
         <dl>
           <dd>Nick: <%= @profile.user.nick %></dd>
           <dd>Name: <%= @profile.user.name %></dd>
