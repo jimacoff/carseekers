@@ -1,0 +1,12 @@
+<%= form_for @ad, :url => user_ad_path(current_user, @ad), :method => :patch do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <div><%= f.label :title %><br />
+    <%= f.text_field :title %></div>
+
+    <div><%= f.label :description %><br />
+    <%= f.text_area :description %></div>
+
+    <div><%= f.submit "Update Ad", :class => "button [success small radius round]" %></div>
+<% end %>
+

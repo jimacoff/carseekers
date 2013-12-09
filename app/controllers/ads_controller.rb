@@ -13,6 +13,16 @@ class AdsController < ApplicationController
     render :show
   end
 
+  def edit
+    @ad = Ad.find(params[:id])
+  end
+
+  def update
+    @ad = Ad.find(params[:id])
+    @ad.update_attributes(ad_params)
+    render :nothing => :true
+  end
+
   private
   def ad_params
     params.require(:ad).permit(:title, :user_id)

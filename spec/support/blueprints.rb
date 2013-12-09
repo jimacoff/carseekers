@@ -8,4 +8,5 @@ end
 
 Ad.blueprint do
   title { Faker::Lorem.words(rand(2..4)).join(' ') }
+  description { Faker::Lorem.sentences(rand(3..5)).join(' ') }
 end
