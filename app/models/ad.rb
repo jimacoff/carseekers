@@ -15,6 +15,7 @@ class Ad < ActiveRecord::Base
   #Associations
   belongs_to :user
   has_many :images
+  has_one :car
   accepts_nested_attributes_for :images, :allow_destroy => true
 
   after_save :images_holder

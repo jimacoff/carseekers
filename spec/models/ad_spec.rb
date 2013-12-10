@@ -16,6 +16,7 @@ describe Ad do
   context "associations" do
     it { should belong_to(:user) }
     it { should have_many(:images) }
+    it { should have_one(:car) }
   end
 
   context "ad will always have 5 images, even if they are empty" do
