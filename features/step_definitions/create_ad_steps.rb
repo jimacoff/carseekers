@@ -18,3 +18,4 @@ Then(/^he should see his new Ad on his profile page$/) do
   visit user_profiles_path(:user_id => @user.id)
   expect(page).to have_content @ad.title
 end
+

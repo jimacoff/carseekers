@@ -16,6 +16,8 @@ class AdsController < ApplicationController
 
   def edit
     @ad = Ad.find(params[:id])
+    @images_quantity = @ad.images.count
+    @fields_quantity = 5 - @images_quantity
   end
 
   def update
@@ -26,6 +28,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id])
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy])
   end
 end
