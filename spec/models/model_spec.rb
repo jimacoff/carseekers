@@ -1,19 +1,18 @@
 # == Schema Information
 #
-# Table name: images
+# Table name: models
 #
 #  id         :integer          not null, primary key
+#  make_id    :integer
+#  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  ad_id      :integer
-#  carphoto   :string(255)
 #
 
 require 'spec_helper'
 
-describe Image do
+describe Model do
   context "associations" do
-    it { should belong_to(:ad) }
+    it { should belong_to(:make) }
   end
 end
-

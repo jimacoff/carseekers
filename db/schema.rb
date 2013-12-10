@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131209191401) do
+ActiveRecord::Schema.define(version: 20131210184050) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -21,11 +21,38 @@ ActiveRecord::Schema.define(version: 20131209191401) do
     t.text     "description"
   end
 
+  create_table "cars", force: true do |t|
+    t.string   "fuel_type"
+    t.string   "age"
+    t.string   "type"
+    t.string   "color"
+    t.string   "engine"
+    t.string   "image_url"
+    t.string   "hp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "ad_id"
+  end
+
   create_table "images", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ad_id"
     t.string   "carphoto"
+  end
+
+  create_table "makes", force: true do |t|
+    t.integer  "car_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "models", force: true do |t|
+    t.integer  "make_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "profiles", force: true do |t|
