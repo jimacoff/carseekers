@@ -4,7 +4,6 @@ Feature: Edit Ad
     Given the user is already registered
     Given the user is already signed in
 
-  @wip
   Scenario: A User edits his previously published Ad
     Given that a user has a previously published Ad
     And he is on the edit page of the ad
