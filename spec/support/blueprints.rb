@@ -22,7 +22,7 @@ end
 Car.blueprint do
   fuel_type { "petrol" }
   age { "2004" }
-  type { "cabriolet" }
+  style { "cabriolet" }
   engine { "2500cc - 3500cc" }
   hp { "200hp - 250hp" }
   color { "red" }
