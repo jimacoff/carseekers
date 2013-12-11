@@ -1,34 +1,62 @@
 <div class="row">
   <section class="large-9 columns">
     <h1><%= @ad.title %></h1>
-    <p><%= @ad.description %></p>
-    <dd>
-      <dl><%= @ad.car.make.name %>, <%= @ad.car.model.name %></dl>
-      <dl>Engine: <%= @ad.car.engine %></dl>
-      <dl>Power: <%= @ad.car.hp %></dl>
-      <dl>Year: <%= @ad.car.age %></dl>
-      <dl>Fuel Type: <%= @ad.car.fuel_type %></dl>
-      <dl>Style: <%= @ad.car.style %></dl>
-      <dl>Color: <%= @ad.car.color %></dl>
-    </dd>
     <div class="row">
-      <section class="panel">
-        <ul class="clearing-thumbs" data-clearing>
-          <% @ad.images.each do |image| %>
-            <li><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>"></a></li>
-          <% end %>
-        </ul>
-      </section>
+      <div class="large-6 left image-holder">
+        <img src="<%= @ad.images.first.carphoto_url %>" class="ad-main-image">
+      </div>
+      <section class="large-6 columns bidder-wrap">
+        <div class="panel bidder">
+          <dd>
+            <dl>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.created_at + 50.minutes) %></em></strong></dl>
+            <dl>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on this ad.</dl>
+            <%= form_for @bid, :url => bidder_path(current_user, @ad) do |f| %>
+              <%= f.text_field :actual %>
+              <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
+            <% end %>
+            <dl>Actual Bid: <strong>£ <%= Bid.maximum('actual') %></strong></dl>
+            <dl><%= "Buy now price: £ " + @ad.bids.first.buy_now_price.to_s if @ad.bids.first.buy_now_price != 0 %></dl>
+            </dd>
+          </div>
+        </section>
+      </div>
+      <div class="row">
+        <section class="panel large-12 columns">
+          <ul class="clearing-thumbs" data-clearing>
+            <% @ad.images.each do |image| %>
+            <li class="image-thumb"><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>"></a></li>
+            <% end %>
+          </ul>
+        </section>
+      </div>
+      <div class="row">
+        <section class="large-12 columns panel car-info">
+          <dd>
+            <dt><h4>Car Info</h4></dt>
+            <dl><strong>Make</strong>: <%= @ad.car.make.name %></dl>
+            <dl><strong>Model</strong>: <%= @ad.car.model.name %></dl>
+            <dl><strong>Engine</strong>: <%= @ad.car.engine %></dl>
+            <dl><strong>Power</strong>: <%= @ad.car.hp %></dl>
+            <dl><strong>Year</strong>: <%= @ad.car.age %></dl>
+            <dl><strong>Fuel Type</strong>: <%= @ad.car.fuel_type %></dl>
+            <dl><strong>Style</strong>: <%= @ad.car.style %></dl>
+            <dl><strong>Color</strong>: <%= @ad.car.color %></dl>
+          </dd>
+        </section>
+      </div>
+      <div class="row">
+        <h3>Car Description</h3>
+        <p class="text-justify"><%= @ad.description %></p>
+      </div>
+    </section>
+    <div class="large-3 columns right">
+      <div class="panel ad-user-info">
+        <h3>Seller Info:</h3>
+        <%= image_tag gravatar_picture_url(@ad.user, 120), :class => "ad-user-picture" %>
+        <dl>
+          <dd>Nick: <%= link_to @ad.user.nick, user_profiles_path(@ad.user) %></dd>
+          <dd>Contact</dd>
+        </dl>
+      </div>
     </div>
-  </section>
-  <div class="large-3 columns right">
-    <div class="panel ad-user-info">
-    <h3>Seller Info:</h3>
-    <%= image_tag gravatar_picture_url(@ad.user, 120), :class => "ad-user-picture" %>
-    <dl>
-      <dd>Nick: <%= link_to @ad.user.nick, user_profiles_path(@ad.user) %></dd>
-      <dd>Contact</dd>
-    </dl>
   </div>
-  </div>
-</div>

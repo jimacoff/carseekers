@@ -4,6 +4,16 @@
     <div><%= f.label :title %><br />
     <%= f.text_field :title %></div>
 
+    <h3>Bid Information</h3>
+    <%= f.fields_for :bids do |bid| %>
+      <%= bid.label :starting_price %>
+      <%= bid.text_field :actual %>
+
+      <%= bid.label :buy_now_price %>
+      <%= bid.text_field :buy_now_price %>
+    <% end %>
+
+    <h3>Car Information</h3>
     <div><%= f.label :car_make %><br />
     <%= f.fields_for :car do |car| %>
       <%= car.collection_select :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
