@@ -20,6 +20,7 @@ class Ad < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
+  accepts_nested_attributes_for :bids, :allow_destroy => true
 
   #Callbacks for image holder
   after_save :images_holder

@@ -1,5 +1,14 @@
 class AdsController < ApplicationController
 
+  def bidder
+    @ad = Ad.find(params[:id])
+    @newbid = Bid.new
+    @newbid.actual = params[:bid][:actual]
+    @ad.bids << @newbid
+    @bid = Bid.new
+    render :show
+  end
+
   def model_selector
     make = Make.find(params[:make][:id])
     @models = make.models
@@ -11,16 +20,19 @@ class AdsController < ApplicationController
 
   def show
     @ad = Ad.find(params[:id])
+    @bid = Bid.new
   end
 
   def new
     @ad = Ad.new
     @ad.car = Car.new
+    @ad.bids << Bid.new
     5.times { @ad.images << Image.new }
   end
 
   def create
     @ad = Ad.create(ad_params)
+    @bid = Bid.new
     render :show
   end
 
@@ -31,6 +43,7 @@ class AdsController < ApplicationController
   def update
     @ad = Ad.find(params[:id])
     @ad.update_attributes(ad_params)
+    @bid = Bid.new
     render :show, :id => @ad.id
   end
 
@@ -42,6 +55,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id, :engine, :hp, :fuel_type, :age, :style, :color])
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id, :engine, :hp, :fuel_type, :age, :style, :color], :bids_attributes => [:actual, :highest, :buy_now_price])
   end
 end

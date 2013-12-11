@@ -6,6 +6,7 @@ Carseekers::Application.routes.draw do
   #Standard Routes
   root 'pages#index'
   post "ads/model_selector", :to => 'ads#model_selector', :as => "model_selector"
+  post "ads/:user_id/bidder/:id", :to => 'ads#bidder', :as => "bidder"
   resources :users do
     resources :profiles, :only => [:index, :show, :edit, :update]
     resources :ads

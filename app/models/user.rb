@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
       unless user
           user = User.new
       end
-      user
+    user
   end
 
 end

@@ -5,7 +5,6 @@
 #  id         :integer          not null, primary key
 #  fuel_type  :string(255)
 #  age        :string(255)
-#  type       :string(255)
 #  color      :string(255)
 #  engine     :string(255)
 #  image_url  :string(255)
@@ -15,6 +14,7 @@
 #  ad_id      :integer
 #  make_id    :integer
 #  model_id   :integer
+#  style      :string(255)
 #
 
 require 'spec_helper'

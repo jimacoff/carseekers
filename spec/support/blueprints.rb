@@ -44,3 +44,9 @@ end
 Image.blueprint(:with_file) do
   carphoto { File.open('spec/fixtures/car.jpg') }
 end
+
+Bid.blueprint do
+  actual { 1000.20 }
+  highest { 1000.20 }
+  buy_now_price { 30000.00 }
+end
