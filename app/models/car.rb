@@ -13,12 +13,12 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  ad_id      :integer
+#  make_id    :integer
+#  model_id   :integer
 #
 
 class Car < ActiveRecord::Base
   belongs_to :ad
-  has_one :make
-
-  accepts_nested_attributes_for :make, :allow_destroy => true
-
+  belongs_to :make
+  belongs_to :model
 end

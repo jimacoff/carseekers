@@ -6,12 +6,13 @@
 
     <div><%= f.label :car_make %><br />
     <%= f.fields_for :car do |make| %>
-      <%= make.collection_select :make, Make.all, :id, :name, :prompt => "Select Make" %>
-    <% end %></div>
+      <%= make.collection_select :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
+    <% end %>
+    </div>
 
     <div><%= f.label :car_model %><br />
-    <%= f.fields_for :car do |model| %>
-      <%= model.collection_select :model, Model.all, :id, :name, :prompt => "Select Model" %>
+    <%= f.fields_for :car do |mod| %>
+      <%= mod.collection_select :model_id, Model.order(:name), :id, :name, :prompt => "Select Model" %>
     <% end %></div>
 
     <div><%= f.label :description %><br />

@@ -28,7 +28,6 @@ Car.blueprint do
   color { "red" }
 end
 
-
 Image.blueprint do
 
 end

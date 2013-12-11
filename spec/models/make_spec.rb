@@ -14,7 +14,7 @@ require 'spec_helper'
 describe Make do
   context "associations" do
     it { should have_many(:models) }
-    it { should belong_to(:car) }
+    it { should have_many(:cars) }
   end
 
   context "it should get the data from edmunds" do

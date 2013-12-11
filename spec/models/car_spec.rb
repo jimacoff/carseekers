@@ -13,6 +13,8 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  ad_id      :integer
+#  make_id    :integer
+#  model_id   :integer
 #
 
 require 'spec_helper'
@@ -20,6 +22,6 @@ require 'spec_helper'
 describe Car do
   context "associations" do
     it { should belong_to(:ad) }
-    it { should have_one(:make) }
+    it { should belong_to(:make) }
   end
 end

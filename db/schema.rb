@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131210184050) do
+ActiveRecord::Schema.define(version: 20131211154423) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20131210184050) do
   create_table "cars", force: true do |t|
     t.string   "fuel_type"
     t.string   "age"
-    t.string   "type"
     t.string   "color"
     t.string   "engine"
     t.string   "image_url"
@@ -32,6 +31,9 @@ ActiveRecord::Schema.define(version: 20131210184050) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "ad_id"
+    t.integer  "make_id"
+    t.integer  "model_id"
+    t.string   "style"
   end
 
   create_table "images", force: true do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20131210184050) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "car_id"
   end
 
   create_table "profiles", force: true do |t|

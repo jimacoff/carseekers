@@ -90,4 +90,26 @@ describe AdsController do
     end
   end
 
+  describe "Create car with new Ad" do
+    before do
+      @ad = Ad.new
+      @ad.car = Car.new
+      @make = Make.make!
+      @model = Model.make!
+      @valid_params = { :ad => {
+        :car_attributes => {
+          :make_id => @make.id,
+          :model_id => @model.id
+        }
+      }}
+
+      post :create,  @valid_params.merge(:user_id => @user.id)
+    end
+
+    it "should have created a new car with the correct make and model" do
+      Ad.first.car.make.name.should eq(@make.name)
+      Ad.first.car.model.name.should eq(@model.name)
+    end
+  end
+
 end

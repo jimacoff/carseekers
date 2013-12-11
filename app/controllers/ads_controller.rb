@@ -15,10 +15,10 @@ class AdsController < ApplicationController
 
   def new
     @ad = Ad.new
+    @ad.car = Car.new
   end
 
   def create
-    binding.pry
     @ad = Ad.create(ad_params)
     render :show
   end
@@ -37,6 +37,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car => [:make => [:model]])
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id])
   end
 end

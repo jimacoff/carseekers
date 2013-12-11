@@ -2,6 +2,9 @@
   <section class="large-9 columns">
     <h1><%= @ad.title %></h1>
     <p><%= @ad.description %></p>
+    <dd>
+      <dl><%= @ad.car.make.name %>, <%= @ad.car.model.name %></dl>
+    </dd>
     <div class="row">
       <section class="panel">
         <ul class="clearing-thumbs" data-clearing>

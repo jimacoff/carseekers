@@ -18,14 +18,12 @@
 
 $(function(){ $(document).foundation(); });
 
-
-
 $( document ).ready(function() {
 
   var make_id = "";
 
-  $('#ad_car_make').on('change', function() {
-    make_id = this.selectedIndex;
+  $('#ad_car_attributes_make_id').on('change', function(e) {
+    make_id = $("select option:selected").first().attr('value');
     loadModels(make_id);
   });
 
@@ -43,7 +41,7 @@ $( document ).ready(function() {
 
   function createOption(json) {
 
-    var model_select = $("#ad_car_model");
+    var model_select = $("#ad_car_attributes_model_id");
 
     model_select.empty();
     _(json.models).each(function(model, pos) {
@@ -51,6 +49,4 @@ $( document ).ready(function() {
         model_select.append($("<option>").attr('value',model.id).text(model.name));
     });
   }
-
 });
-
