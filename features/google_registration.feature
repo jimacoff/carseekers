@@ -2,6 +2,7 @@ Feature: Registration with Google Account
 
   Scenario: A User signs up with its Google Account
     Given that he is on the homepage
+    And he clicks on "Sign in - Register"
     And he has clicked on the "Sign in/up with Google" link
     Then he should accept the requirements
     And he should be then on the registration page

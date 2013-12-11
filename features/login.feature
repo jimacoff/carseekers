@@ -5,6 +5,7 @@ Feature: Login
 
   Scenario: A User signs in
     Given that he is on the homepage
+    And he clicks on "Sign in - Register"
     And he clicks on "Sign in"
     Then he fills in all the information needed for login
     And he clicks on the "Sign in" button
