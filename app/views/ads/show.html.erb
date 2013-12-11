@@ -4,6 +4,12 @@
     <p><%= @ad.description %></p>
     <dd>
       <dl><%= @ad.car.make.name %>, <%= @ad.car.model.name %></dl>
+      <dl>Engine: <%= @ad.car.engine %></dl>
+      <dl>Power: <%= @ad.car.hp %></dl>
+      <dl>Year: <%= @ad.car.age %></dl>
+      <dl>Fuel Type: <%= @ad.car.fuel_type %></dl>
+      <dl>Style: <%= @ad.car.style %></dl>
+      <dl>Color: <%= @ad.car.color %></dl>
     </dd>
     <div class="row">
       <section class="panel">

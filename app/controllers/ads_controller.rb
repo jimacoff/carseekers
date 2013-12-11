@@ -31,11 +31,17 @@ class AdsController < ApplicationController
   def update
     @ad = Ad.find(params[:id])
     @ad.update_attributes(ad_params)
-    render :show
+    render :show, :id => @ad.id
+  end
+
+  def destroy
+    @ad = Ad.find(params[:id])
+    @ad.destroy!
+    redirect_to root_path
   end
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id])
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id, :engine, :hp, :fuel_type, :age, :style, :color])
   end
 end

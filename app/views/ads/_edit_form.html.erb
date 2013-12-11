@@ -7,10 +7,31 @@
     <div><%= f.label :car_make %><br />
     <%= f.fields_for :car do |car| %>
       <%= car.collection_select :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
+    </div>
 
     <div><%= car.label :car_model %><br />
       <%= car.collection_select :model_id, Model.order(:name), :id, :name, :prompt => "Select Model" %>
-    <% end %></div>
+    </div>
+
+    <div><%= car.label :engine %><br />
+    <%= car.select :engine, engine %></div>
+
+    <div><%= car.label :power %><br />
+    <%= car.select :hp, power %></div>
+
+    <div><%= car.label :fuel_type %><br />
+    <%= car.select :fuel_type, fuel_type %></div>
+
+    <div><%= car.label :age %><br />
+    <%= car.select :age, (1960..Date.today.year).to_a %></div>
+
+    <div><%= car.label :style %><br />
+    <%= car.select :style, style %></div>
+
+    <div><%= car.label :color %><br />
+    <%= car.select :color, color %></div>
+
+    <% end %>
 
     <div><%= f.label :description %><br />
     <%= f.text_area :description %></div>
@@ -31,5 +52,7 @@
         </section>
     </div>
     <div><%= f.submit "Update Ad", :class => "button [success small radius round]" %></div>
+
 <% end %>
+    <p>Sold it already? <%= button_to "Remove my add", user_ad_path(:user_id => current_user.id, :id => @ad.id), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "button [success alert small radius round]"  %></p>
 

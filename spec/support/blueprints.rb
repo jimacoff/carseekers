@@ -20,12 +20,21 @@ Model.blueprint do
 end
 
 Car.blueprint do
-  fuel_type { "petrol" }
+  fuel_type { "Petrol" }
   age { "2004" }
-  style { "cabriolet" }
+  style { "Cabriolet" }
   engine { "2500cc - 3500cc" }
-  hp { "200hp - 250hp" }
-  color { "red" }
+  hp { "200hp - 300hp" }
+  color { "Red" }
+end
+
+Car.blueprint(:v2) do
+  fuel_type { "Diesel" }
+  age { "1960" }
+  style { "Small cars" }
+  engine { "< 1000cc" }
+  hp { "< 30hp" }
+  color { "Blue" }
 end
 
 Image.blueprint do
