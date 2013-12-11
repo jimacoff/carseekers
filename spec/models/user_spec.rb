@@ -33,6 +33,7 @@ describe User do
   context "associations" do
     it { should have_one(:profile) }
     it { should have_many(:ads) }
+    it { should have_many(:bids) }
   end
 
   context "creates a profile" do

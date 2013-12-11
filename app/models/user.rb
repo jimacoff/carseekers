@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   #Associations
   has_one :profile
   has_many :ads
+  has_many :bids
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
