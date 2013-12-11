@@ -1,15 +1,24 @@
 class AdsController < ApplicationController
 
+  def model_selector
+    make = Make.find(params[:make][:id])
+    @models = make.models
+    respond_to do |format|
+      format.html { render :nothing => :true }
+      format.js { render :json => { :models => @models.as_json } }
+    end
+  end
+
   def show
     @ad = Ad.find(params[:id])
   end
 
   def new
     @ad = Ad.new
-    5.times { @ad.images << Image.new }
   end
 
   def create
+    binding.pry
     @ad = Ad.create(ad_params)
     render :show
   end
@@ -28,6 +37,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy])
+    params.require(:ad).permit(:title, :description, :user_id, :images_attributes => [:carphoto, :id, :_destroy], :car => [:make => [:model]])
   end
 end

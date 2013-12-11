@@ -12,7 +12,45 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require underscore
 //= require foundation
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+
+
+$( document ).ready(function() {
+
+  var make_id = "";
+
+  $('#ad_car_make').on('change', function() {
+    make_id = this.selectedIndex;
+    loadModels(make_id);
+  });
+
+  function loadModels(make_id) {
+    $.ajax({
+      type: "POST",
+      url: '/ads/model_selector',
+      dataType: 'json',
+      data: { make : { id: make_id } },
+      success: function(json) {
+        createOption(json);
+      }
+    });
+  }
+
+  function createOption(json) {
+
+    var model_select = $("#ad_car_model");
+
+    model_select.empty();
+    _(json.models).each(function(model, pos) {
+      console.log(model);
+        model_select.append($("<option>").attr('value',model.id).text(model.name));
+    });
+  }
+
+});
+

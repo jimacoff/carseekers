@@ -4,6 +4,16 @@
     <div><%= f.label :title %><br />
     <%= f.text_field :title %></div>
 
+    <div><%= f.label :car_make %><br />
+    <%= f.fields_for :car do |make| %>
+      <%= make.collection_select :make, Make.all, :id, :name, :prompt => "Select Make" %>
+    <% end %></div>
+
+    <div><%= f.label :car_model %><br />
+    <%= f.fields_for :car do |model| %>
+      <%= model.collection_select :model, Model.all, :id, :name, :prompt => "Select Model" %>
+    <% end %></div>
+
     <div><%= f.label :description %><br />
     <%= f.text_area :description %></div>
 

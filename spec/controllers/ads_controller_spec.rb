@@ -78,5 +78,16 @@ describe AdsController do
     end
   end
 
+  describe "Post to create with Cars, Makes, Models and friends!" do
+    before do
+      @ad = Ad.make!
+      @valid_params = { :ad => {
+        :title => @ad.title
+      }}
+
+      post :create, @valid_params.merge(:user_id => @user.id)
+
+    end
+  end
 
 end
