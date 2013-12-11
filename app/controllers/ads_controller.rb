@@ -16,6 +16,7 @@ class AdsController < ApplicationController
   def new
     @ad = Ad.new
     @ad.car = Car.new
+    5.times { @ad.images << Image.new }
   end
 
   def create
@@ -25,8 +26,6 @@ class AdsController < ApplicationController
 
   def edit
     @ad = Ad.find(params[:id])
-    @images_quantity = @ad.images.count
-    @fields_quantity = 5 - @images_quantity
   end
 
   def update

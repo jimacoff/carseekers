@@ -20,7 +20,6 @@ class Ad < ActiveRecord::Base
   accepts_nested_attributes_for :car, :allow_destroy => true
 
   #Callbacks for image holder
-  after_initialize :images_holder
   after_save :images_holder
 
   def images_holder
