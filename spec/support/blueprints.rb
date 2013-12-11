@@ -11,6 +11,23 @@ Ad.blueprint do
   description { Faker::Lorem.sentences(rand(3..5)).join(' ') }
 end
 
+Make.blueprint do
+  name { "Audi" }
+end
+
+Model.blueprint do
+  name { "TT" }
+end
+
+Car.blueprint do
+  fuel_type { "petrol" }
+  age { "2004" }
+  style { "cabriolet" }
+  engine { "2500cc - 3500cc" }
+  hp { "200hp - 250hp" }
+  color { "red" }
+end
+
 Image.blueprint do
 
 end

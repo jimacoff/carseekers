@@ -34,6 +34,7 @@ group :development, :test do
   gem 'binding_of_caller'
 
   #Testing
+  gem 'fakeweb'
   gem 'factory_girl'
   gem 'jasmine-rails'
   gem 'rspec-rails', '~> 2.0'

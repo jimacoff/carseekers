@@ -11,7 +11,7 @@
 
 class Make < ActiveRecord::Base
   has_many :models
-  belongs_to :car
+  has_many :cars
   accepts_nested_attributes_for :models, :allow_destroy => true
 
   def self.get_data
