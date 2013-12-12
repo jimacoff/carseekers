@@ -18,3 +18,5 @@ pickle-email-*.html
 .project
 config/initializers/edmunds.rb
 public/uploads
+config/initializers/secret_token.rb
+config/google_oauth.yml
