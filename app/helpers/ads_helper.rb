@@ -1,5 +1,9 @@
 module AdsHelper
 
+  def end_date
+    [['1 Day', 1], ['7 Days', 7], ['30 Days', 30]]
+  end
+
   def fuel_type
     ['Petrol', 'Diesel', 'Electric', 'Hybrid']
   end

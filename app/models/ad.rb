@@ -2,12 +2,16 @@
 #
 # Table name: ads
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer
-#  title       :string(255)
-#  created_at  :datetime
-#  updated_at  :datetime
-#  description :text
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  title          :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  description    :text
+#  starting_price :float
+#  buy_now_price  :float
+#  ends           :date
+#  active         :boolean
 #
 
 class Ad < ActiveRecord::Base

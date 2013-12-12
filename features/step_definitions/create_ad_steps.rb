@@ -1,6 +1,6 @@
 Given(/^there is make and model on the system$/) do
-  Make.make!
-  Model.make!
+  @make = Make.make!
+  @model = Model.make!
 end
 
 Given(/^he is in the new Ad page$/) do

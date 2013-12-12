@@ -23,7 +23,7 @@ $( document ).ready(function() {
   var make_id = "";
 
   $('#ad_car_attributes_make_id').on('change', function(e) {
-    make_id = $("select option:selected").first().attr('value');
+    make_id = $("#ad_car_attributes_make_id option:selected").first().attr('value');
     loadModels(make_id);
   });
 

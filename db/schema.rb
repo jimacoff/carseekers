@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131212164708) do
+ActiveRecord::Schema.define(version: 20131212173653) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20131212164708) do
     t.text     "description"
     t.float    "starting_price"
     t.float    "buy_now_price"
+    t.date     "ends"
+    t.boolean  "active"
   end
 
   create_table "bids", force: true do |t|

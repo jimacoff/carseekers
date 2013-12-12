@@ -3,12 +3,12 @@
     <h1><%= @ad.title %></h1>
     <div class="row">
       <div class="large-6 left image-holder">
-        <img src="<%= @ad.images.first.carphoto_url %>" class="ad-main-image">
+        <a href="<%= @ad.images.first.carphoto_url %>"><img src="<%= @ad.images.first.carphoto.main.url %>" class="ad-main-image"></a>
       </div>
       <section class="large-6 columns bidder-wrap">
         <div class="panel bidder">
           <dd>
-            <dl>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.created_at + 50.minutes) %></em></strong></dl>
+            <dl>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.ends) %></em></strong></dl>
             <dl>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on this ad.</dl>
             <%= form_for @bid, :url => bids_path(current_user, @ad) do |f| %>
               <%= f.text_field :highest, :placeholder => "Insert your bid here" %>
