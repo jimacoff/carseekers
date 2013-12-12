@@ -56,8 +56,8 @@ production:
   encoding: unicode
   database: carseekers_production
   pool: 5
-  username: edgar
-  password: edgar
+  username:
+  password:
 
 cucumber:
   <<: *test
