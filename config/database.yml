@@ -54,9 +54,9 @@ test: &test
 production:
   adapter: postgresql
   encoding: unicode
-  database:
+  database: carseekers_production
   pool: 5
-  username:
+  username: carseekers
   password:
 
 cucumber:
