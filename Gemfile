@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+  group :production do
+    gem 'pg'
+    gem 'rails_12factor'
+  end
+
   #Rails edge @ Dec 2013
   gem 'rails', '4.0.0'
 
