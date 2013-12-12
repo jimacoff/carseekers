@@ -1,4 +1,4 @@
-google_oauth_secrets = YAML::load_file('config/google_oauth.yml')[Rails.env]
+google_oauth_secrets = YAML::load_file('config/google_oauth.yml')[Rails.env] if YAML::load_file('config/google_oauth.yml')
 
 Carseekers::Application.configure do
   config.google_app_id = ENV["google_app_id"] || google_oauth_secrets["google_app_id"]
