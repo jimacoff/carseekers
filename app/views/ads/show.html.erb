@@ -10,8 +10,9 @@
           <dd>
             <dl>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.created_at + 50.minutes) %></em></strong></dl>
             <dl>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on this ad.</dl>
-            <%= form_for @bid, :url => bidder_path(current_user, @ad) do |f| %>
+            <%= form_for @bid, :url => bids_path(current_user, @ad) do |f| %>
               <%= f.text_field :actual %>
+              <%= f.hidden_field :ad_id, :value => @ad.id %>
               <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
             <% end %>
             <dl>Actual Bid: <strong>£ <%= Bid.maximum('actual') %></strong></dl>

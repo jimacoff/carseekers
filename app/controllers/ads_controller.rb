@@ -1,14 +1,5 @@
 class AdsController < ApplicationController
 
-  def bidder
-    @ad = Ad.find(params[:id])
-    @newbid = Bid.new
-    @newbid.actual = params[:bid][:actual]
-    @ad.bids << @newbid
-    @bid = Bid.new
-    render :show
-  end
-
   def model_selector
     make = Make.find(params[:make][:id])
     @models = make.models
