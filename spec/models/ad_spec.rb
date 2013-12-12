@@ -24,7 +24,7 @@ describe Ad do
     @ad = Ad.make!
   end
 
-  context "ad will always have 5 images, even if they are empty" do
+  context "Ad will always have 5 images, even if they are empty" do
     before do
       @ad = Ad.make!
       @ad.images.first.destroy
@@ -39,6 +39,17 @@ describe Ad do
   context "Create new bid and set highest and buy now price when new Ad" do
     it "should have a new associated bid with the starting price as highest bid" do
       Bid.maximum('highest').should eq(@ad.starting_price)
+    end
+  end
+
+  context "Highest bid for this ad" do
+    before do
+      @ad2 = Ad.make!(:title => "Mercedes SLK", :starting_price => "7000.00")
+    end
+
+    it "should have the highest bid for that particular AD, not the highest from all the ADs" do
+      @ad.top_bid.should eq(@ad.bids.first.highest)
+      @ad.top_bid.should_not eq(@ad2.bids.first.highest)
     end
   end
 end

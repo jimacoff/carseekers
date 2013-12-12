@@ -6,6 +6,7 @@ class BidsController < ApplicationController
     @ad.bids << @newbid
     @ad.save!
     @bid = Bid.new
+    flash[:notice] = "Your bid has been processed."
     redirect_to user_ad_path(:user_id => @ad.user.id, :id => @ad.id)
   end
 

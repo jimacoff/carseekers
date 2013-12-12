@@ -4,6 +4,16 @@
     <div><%= f.label :title %><br />
     <%= f.text_field :title %></div>
 
+    <h3>Bid Information</h3>
+
+    <blockquote>Note: This AD is already active, so you can not edit his actual bid price.</blockquote>
+
+    <div><%= f.label :starting_price %><br />
+    <%= f.text_field :starting_price, :readonly => :true, :class => 'bid-starting-price' %></div>
+
+    <div><%= f.label :buy_now_price %><br />
+    <%= f.text_field :buy_now_price %></div>
+
     <h3>Car Information</h3>
     <div><%= f.label :car_make %><br />
     <%= f.fields_for :car do |car| %>

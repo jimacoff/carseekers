@@ -26,10 +26,12 @@ class Ad < ActiveRecord::Base
   after_save :images_holder
 
   def set_bid
-    bid = Bid.new
-    bid.highest = self.starting_price
-    bid.save
-    self.bids << bid
+    unless self.top_bid
+      bid = Bid.new
+      bid.highest = self.starting_price
+      bid.save
+      self.bids << bid
+    end
   end
 
   def images_holder
@@ -40,5 +42,9 @@ class Ad < ActiveRecord::Base
         self.images << Image.new
       end
     end
+  end
+
+  def top_bid
+    Bid.where('ad_id = ? ', self.id).maximum(:highest)
   end
 end

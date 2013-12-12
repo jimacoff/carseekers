@@ -58,3 +58,9 @@ h1 {
     display: block;
   }
 }
+
+.bid-starting-price {
+  &:hover {
+    border: 2px solid red;
+  }
+}
