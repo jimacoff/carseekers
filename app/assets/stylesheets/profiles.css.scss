@@ -4,11 +4,21 @@
 .profile {
 
   .profile-picture {
-    margin: 0.5rem 0 0 0;
+    margin: 0.5rem 0 0 2rem;
   }
 
   .profile-edit {
     font-size: 1.5rem;
     float: right;
+  }
+
+  .profile-ads {
+    margin: 0;
+
+    dd {
+      padding: 0.2rem;
+      margin: 0.4rem 0 0 0;
+      border-bottom: 0.1rem solid black;
+    }
   }
 }
