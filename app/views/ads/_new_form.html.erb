@@ -5,13 +5,11 @@
     <%= f.text_field :title %></div>
 
     <h3>Bid Information</h3>
-    <%= f.fields_for :bids do |bid| %>
-      <%= bid.label :starting_price %>
-      <%= bid.text_field :actual %>
+    <div><%= f.label :starting_price %><br />
+    <%= f.text_field :starting_price %></div>
 
-      <%= bid.label :buy_now_price %>
-      <%= bid.text_field :buy_now_price %>
-    <% end %>
+    <div><%= f.label :buy_now_price %><br />
+    <%= f.text_field :buy_now_price %></div>
 
     <h3>Car Information</h3>
     <div><%= f.label :car_make %><br />

@@ -13,9 +13,7 @@ describe BidsController do
       @user.ads << @ad
       @bid = Bid.make!
       @valid_params = { :bid => {
-          :actual => @bid.actual,
           :highest => @bid.highest,
-          :buy_now_price => @bid.buy_now_price,
           :ad_id => @ad.id
         }
       }
@@ -23,9 +21,7 @@ describe BidsController do
     end
 
     it "should have the bid figures" do
-      assigns(:ad).bids.first.actual.should eq(@bid.actual)
-      assigns(:ad).bids.first.highest.should eq(@bid.highest)
-      assigns(:ad).bids.first.buy_now_price.should eq(@bid.buy_now_price)
+      assigns(:ad).bids.last.highest.should eq(@bid.highest)
     end
   end
 

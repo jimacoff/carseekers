@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211185045) do
+ActiveRecord::Schema.define(version: 20131212164708) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -19,15 +19,15 @@ ActiveRecord::Schema.define(version: 20131211185045) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+    t.float    "starting_price"
+    t.float    "buy_now_price"
   end
 
   create_table "bids", force: true do |t|
     t.integer  "user_id"
     t.integer  "ad_id"
-    t.float    "buy_now_price"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "actual"
     t.float    "highest"
   end
 

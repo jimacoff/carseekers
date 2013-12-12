@@ -11,12 +11,12 @@
             <dl>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.created_at + 50.minutes) %></em></strong></dl>
             <dl>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on this ad.</dl>
             <%= form_for @bid, :url => bids_path(current_user, @ad) do |f| %>
-              <%= f.text_field :actual %>
+              <%= f.text_field :highest, :placeholder => "Insert your bid here" %>
               <%= f.hidden_field :ad_id, :value => @ad.id %>
               <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
             <% end %>
-            <dl>Actual Bid: <strong>£ <%= Bid.maximum('actual') %></strong></dl>
-            <dl><%= "Buy now price: £ " + @ad.bids.first.buy_now_price.to_s if @ad.bids.first.buy_now_price != 0 %></dl>
+            <dl>Highest Bid: <strong>£ <%= @ad.bids.last.highest %></strong></dl>
+            <dl><%= "Buy now price: £ " + @ad.buy_now_price.to_s if @ad.buy_now_price != 0 %></dl>
             </dd>
           </div>
         </section>

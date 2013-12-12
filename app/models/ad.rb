@@ -20,10 +20,17 @@ class Ad < ActiveRecord::Base
 
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
-  accepts_nested_attributes_for :bids, :allow_destroy => true
 
-  #Callbacks for image holder
+  #Callbacks
+  before_save :set_bid
   after_save :images_holder
+
+  def set_bid
+    bid = Bid.new
+    bid.highest = self.starting_price
+    bid.save
+    self.bids << bid
+  end
 
   def images_holder
     images_quantity = self.images.count

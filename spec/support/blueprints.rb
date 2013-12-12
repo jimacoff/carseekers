@@ -9,6 +9,8 @@ end
 Ad.blueprint do
   title { Faker::Lorem.words(rand(2..4)).join(' ') }
   description { Faker::Lorem.sentences(rand(3..5)).join(' ') }
+  starting_price { 2000.00 }
+  buy_now_price { 10000.00 }
 end
 
 Make.blueprint do
@@ -46,7 +48,5 @@ Image.blueprint(:with_file) do
 end
 
 Bid.blueprint do
-  actual { 1000.20 }
-  highest { 1000.20 }
-  buy_now_price { 30000.00 }
+  highest { 2000.00 }
 end

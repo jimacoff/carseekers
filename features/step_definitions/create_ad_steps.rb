@@ -11,10 +11,9 @@ When(/^he fills in the Ad information$/) do
   @ad = Ad.make!
   @bid = Bid.make!
   @car_v2 = Car.make!(:v2)
-
   select('Audi', :from => 'ad[car_attributes][make_id]')
   page.execute_script %Q{ $("#ad_car_attributes_model_id").append($("<option>").attr('value',1).text('TT')) }
-  sleep(1)
+  sleep(3)
   select('TT', :from => 'ad[car_attributes][model_id]')
   select(@car_v2.engine, :from => 'ad[car_attributes][engine]')
   select(@car_v2.hp, :from => 'ad[car_attributes][hp]')
@@ -23,8 +22,8 @@ When(/^he fills in the Ad information$/) do
   select(@car_v2.style, :from => 'ad[car_attributes][style]')
   select(@car_v2.color, :from => 'ad[car_attributes][color]')
   fill_in "Title", :with => @ad.title
-  fill_in "ad[bids_attributes][0][actual]", :with => @bid.actual
-  fill_in "Buy now price", :with => @bid.buy_now_price
+  fill_in "Starting price", :with => @bid.highest
+  fill_in "Buy now price", :with => @ad.buy_now_price
   attach_file("ad[images_attributes][0][carphoto]", "#{Rails.root}/spec/fixtures/car.jpg")
   click_button "Publish"
 end
@@ -37,8 +36,8 @@ Then(/^he should see all the info on his Ad$/) do
   expect(page).to have_content @car_v2.hp
   expect(page).to have_content @car_v2.color
   expect(page).to have_content @car_v2.engine
-  expect(page).to have_content @bid.actual
-  expect(page).to have_content @bid.buy_now_price
+  expect(page).to have_content @bid.highest
+  expect(page).to have_content @ad.buy_now_price
 end
 
 Then(/^he should see his new Ad on his profile page$/) do

@@ -20,6 +20,10 @@ describe Ad do
     it { should have_many(:bids) }
   end
 
+  before do
+    @ad = Ad.make!
+  end
+
   context "ad will always have 5 images, even if they are empty" do
     before do
       @ad = Ad.make!
@@ -29,6 +33,12 @@ describe Ad do
 
     it "should have 5 images" do
       @ad.images.count.should eq(5)
+    end
+  end
+
+  context "Create new bid and set highest and buy now price when new Ad" do
+    it "should have a new associated bid with the starting price as highest bid" do
+      Bid.maximum('highest').should eq(@ad.starting_price)
     end
   end
 end
