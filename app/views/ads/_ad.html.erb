@@ -1,0 +1,29 @@
+<section>
+  <div class="large-12 large-centered columns ad-list-item panel">
+    <div class="right"><%= button_to "View Car", user_ad_path(:user_id => ad.user.id, :id => ad.id), :class => "button [success big radius round] view-car", :method => "get" %></div>
+    <img src="<%= ad.images.first.carphoto.thumb.url %>" class="ad-list-image">
+    <div>
+      <dl class="list-item-header">
+        <div>
+          <dd><%= ad.title %></dd>
+          <dd><%= link_to ad.user.nick, user_profiles_path(ad.user) %></dd>
+          <dd>£<%= ad.top_bid %></dd>
+          <dd><%= ad.car.age %></dd>
+          <dd><%= ad.car.hp %></dd>
+        </div>
+      </dl>
+    </div>
+    <div class="list-item-makemodel">
+      <dl>
+        <dd><%= ad.car.make.name %></dd>
+        <dd><%= ad.car.model.name %></dd>
+      </dl>
+    </div>
+    <div class="list-item-body">
+      <dl>
+        <dd><%= ad.car.engine %></dd>
+        <dd><%= ad.car.fuel_type %></dd>
+        <dd><%= ad.car.color %></dd>
+      </dl>
+    </div>
+  </section>

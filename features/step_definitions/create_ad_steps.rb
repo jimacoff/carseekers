@@ -23,7 +23,6 @@ When(/^he fills in the Ad information$/) do
   select(@car_v2.color, :from => 'ad[car_attributes][color]')
   fill_in "Title", :with => @ad.title
   fill_in "Starting price", :with => @bid.highest
-  fill_in "Buy now price", :with => @ad.buy_now_price
   attach_file("ad[images_attributes][0][carphoto]", "#{Rails.root}/spec/fixtures/car.jpg")
   click_button "Publish"
 end
@@ -37,7 +36,6 @@ Then(/^he should see all the info on his Ad$/) do
   expect(page).to have_content @car_v2.color
   expect(page).to have_content @car_v2.engine
   expect(page).to have_content @bid.highest
-  expect(page).to have_content @ad.buy_now_price
 end
 
 Then(/^he should see his new Ad on his profile page$/) do

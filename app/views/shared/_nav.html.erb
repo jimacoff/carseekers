@@ -29,7 +29,7 @@
     <!-- Left Nav Section -->
     <ul class="left">
       <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Latest auctions", root_path %></li>
+      <li><%= link_to "Latest auctions", all_ads_path %></li>
       <li><%= link_to "Sell your car", new_user_ad_path(:user_id => current_user.id) if current_user %></li>
       <li><%= link_to "Reviews", root_path %></li>
     </ul>

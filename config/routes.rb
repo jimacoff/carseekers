@@ -4,10 +4,11 @@ Carseekers::Application.routes.draw do
 
   #Standard Routes
   root 'pages#index'
+  get 'ads', :to => 'ads#index', :as => 'all_ads'
   post "ads/model_selector", :to => 'ads#model_selector', :as => "model_selector"
   resources :users do
     resources :profiles, :only => [:index, :show, :edit, :update]
-    resources :ads
+    resources :ads, :only => [:show, :new, :create, :edit, :update, :destroy]
   end
   resources :bids, :only => [:create]
 end

@@ -8,4 +8,4 @@ Feature: End date feature
 
   Scenario: A User creates a new Ad with ending date
     When he insert "30 Days" as end date for the ad
-    Then he should see "30 days" as remaining time for the ad
+    Then he should see "29 days" as remaining time for the ad

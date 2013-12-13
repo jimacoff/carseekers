@@ -9,6 +9,10 @@ class AdsController < ApplicationController
     end
   end
 
+  def index
+    @ads = Ad.where(:active => true).paginate(:page => params[:page]).order('id DESC')
+  end
+
   def show
       @ad = Ad.find(params[:id])
       @bid = Bid.new
