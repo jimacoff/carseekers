@@ -29,6 +29,16 @@ class Ad < ActiveRecord::Base
   before_save :set_bid
   after_save :images_holder
 
+  def active?
+    if self.created_at < self.ends
+      self.active = true
+      true
+    else
+      self.active = false
+      false
+    end
+  end
+
   def set_bid
     unless self.top_bid
       bid = Bid.new

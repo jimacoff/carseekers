@@ -11,6 +11,11 @@ Ad.blueprint do
   description { Faker::Lorem.sentences(rand(3..5)).join(' ') }
   starting_price { 2000.00 }
   buy_now_price { 10000.00 }
+  ends { Time.now + 7.days }
+end
+
+Ad.blueprint(:expired) do
+  ends { Time.now - 3.days }
 end
 
 Make.blueprint do

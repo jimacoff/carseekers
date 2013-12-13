@@ -56,4 +56,19 @@ describe Ad do
       @ad.top_bid.should_not eq(@ad2.bids.first.highest)
     end
   end
+
+  context "Ad active" do
+    before do
+      @expired = Ad.make!(:expired)
+    end
+
+    it "the active ad should be active :)" do
+      @ad.active?.should eq(true)
+      @ad.active?.should_not eq(false)
+    end
+
+    it "the expired ad should be NOT active" do
+      @expired.active?.should_not eq(true)
+    end
+  end
 end
