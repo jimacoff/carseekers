@@ -15,32 +15,38 @@
         </dl>
       </div>
     </div>
-    <div class="row">
-      <div class="large-12 large-centered columns profile-ads">
-        <h2>Your Ads:</h2>
-          <table class="large-11 large-centered columns">
-            <thead>
-              <tr>
-                <th width="200">Ad Id</th>
-                <th>Title</th>
-                <th width="150">Highest Bid</th>
-                <th width="150">Buy now price</th>
-                <th width="150">Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @ads.each do |ad| %>
-              <tr>
-                <td><%= ad.id %></td>
-                <td><%= link_to ad.title, user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
-                <td><%= ad.top_bid %></td>
-                <td><%= ad.buy_now_price != 0 ? ad.buy_now_price : "N/A" %></td>
-                <td><%= link_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
+    <% if current_user.id == @profile.id %>
+      <div class="row">
+        <div class="large-12 large-centered columns profile-ads">
+          <h2>Your Ads:</h2>
+            <table class="large-11 large-centered columns">
+              <thead>
+                <tr>
+                  <th width="200">Ad Id</th>
+                  <th>Title</th>
+                  <th width="150">Highest Bid</th>
+                  <th width="150">Buy now price</th>
+                  <th width="150">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @ads.each do |ad| %>
+                <tr>
+                  <td><%= ad.id %></td>
+                  <td><%= link_to ad.title, user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
+                  <td><%= ad.top_bid %></td>
+                  <td><%= ad.buy_now_price != 0 ? ad.buy_now_price : "N/A" %></td>
+                  <% if ad.active? %>
+                    <td><%= link_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
+                  <% else %>
+                    <td>This Ad has expired</td>
+                  <% end %>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <% end %>
 </div>
