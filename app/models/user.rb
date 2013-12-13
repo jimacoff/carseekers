@@ -33,6 +33,8 @@ class User < ActiveRecord::Base
   has_one :profile
   has_many :ads
   has_many :bids
+  has_many :received_messages, :class_name => "Message", :foreign_key => "to_id"
+  has_many :sent_messages, :class_name => "Message", :foreign_key => "from_id"
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

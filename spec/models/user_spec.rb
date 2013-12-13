@@ -34,6 +34,8 @@ describe User do
     it { should have_one(:profile) }
     it { should have_many(:ads) }
     it { should have_many(:bids) }
+    it { should have_many(:received_messages) }
+    it { should have_many(:sent_messages) }
   end
 
   context "creates a profile" do
