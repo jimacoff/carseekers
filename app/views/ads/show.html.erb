@@ -16,7 +16,6 @@
               <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
             <% end %>
             <dl>Highest Bid: <strong>£ <%= @ad.top_bid %></strong></dl>
-            <dl><%= "Buy now price: £ " + @ad.buy_now_price.to_s if @ad.buy_now_price != 0 %></dl>
             </dd>
           </div>
         </section>
