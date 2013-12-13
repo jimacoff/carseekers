@@ -10,7 +10,8 @@ class AdsController < ApplicationController
   end
 
   def index
-    @ads = Ad.where(:active => true).paginate(:page => params[:page]).order('id DESC')
+    #@ads = Ad.paginate(:page => params[:page], :per_page => 5)
+    @ads = Ad.where(:active => true).paginate(:page => params[:page], :per_page => 5).order('id DESC')
   end
 
   def show

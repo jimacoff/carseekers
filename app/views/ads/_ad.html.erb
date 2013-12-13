@@ -1,4 +1,4 @@
-<section>
+<section class="row">
   <div class="large-12 large-centered columns ad-list-item panel">
     <div class="right"><%= button_to "View Car", user_ad_path(:user_id => ad.user.id, :id => ad.id), :class => "button [success big radius round] view-car", :method => "get" %></div>
     <img src="<%= ad.images.first.carphoto.thumb.url %>" class="ad-list-image">

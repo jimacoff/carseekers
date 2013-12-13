@@ -24,6 +24,7 @@ source 'https://rubygems.org'
   gem 'carrierwave'
   gem 'mini_magick'
   gem 'will_paginate', '~> 3.0'
+  gem 'foundation-will_paginate'
 
   # Schema info in models
   gem 'annotate'
