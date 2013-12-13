@@ -39,16 +39,73 @@
               <td><%= ad.top_bid %></td>
               <td><%= ad.buy_now_price != 0 ? ad.buy_now_price : "N/A" %></td>
               <% if ad.active? %>
-              <td><%= link_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
+                <td><%= link_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => ad.id) %></td>
               <% else %>
-              <td>This Ad has expired</td>
+                <td>This Ad has expired</td>
               <% end %>
             </tr>
             <% end %>
           </tbody>
         </table>
       </div>
-    </div>
+  </section>
+  <% end %>
+  <% if current_user.id == @profile.id %>
+    <div class="row">
+      <div class="large-12 large-centered columns profile-ads">
+        <h2>Your Received Messages:</h2>
+        <table class="large-11 large-centered columns">
+          <thead>
+            <tr>
+              <th width="200"><%= check_box("","") %></th>
+              <th>Subject</th>
+              <th width="150">Related Ad</th>
+              <th width="150">Sender</th>
+              <th width="150">Reply</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @profile.user.received_messages.each do |message| %>
+            <tr>
+              <td><%= check_box("","") %></td>
+              <td><%= message.subject %></td>
+              <td><%= message.ad.title %></td>
+              <td><%= link_to User.find(message.from_id).nick, user_profiles_path(User.find(message.from_id)) %></td>
+              <td><%= "Reply" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </section>
+  <% end %>
+  <% if current_user.id == @profile.id %>
+    <div class="row">
+      <div class="large-12 large-centered columns profile-ads">
+        <h2>Your Sent Messages:</h2>
+        <table class="large-11 large-centered columns">
+          <thead>
+            <tr>
+              <th width="200"><%= check_box("","") %></th>
+              <th>Subject</th>
+              <th width="150">Related Ad</th>
+              <th width="150">Sent to</th>
+              <th width="150">Reply</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @profile.user.sent_messages.each do |message| %>
+            <tr>
+              <td><%= check_box("","") %></td>
+              <td><%= message.subject %></td>
+              <td><%= message.ad.title %></td>
+              <td><%= link_to User.find(message.to_id).nick, user_profiles_path(User.find(message.to_id)) %></td>
+              <td><%= "Reply" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
   </section>
   <% end %>
 </div>
