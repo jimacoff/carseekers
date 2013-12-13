@@ -21,6 +21,7 @@ class Ad < ActiveRecord::Base
   has_many :images
   has_one :car
   has_many :bids
+  has_many :messages
 
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true

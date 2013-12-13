@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131213162217) do
+ActiveRecord::Schema.define(version: 20131213174501) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20131213162217) do
     t.integer  "reply_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ad_id"
   end
 
   create_table "models", force: true do |t|
