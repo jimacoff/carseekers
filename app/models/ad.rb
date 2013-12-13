@@ -23,6 +23,9 @@ class Ad < ActiveRecord::Base
   has_many :bids
   has_many :messages
 
+  scope :active, Proc.new { where("ends > ?", Time.now) }
+  scope :expired, Proc.new { where("ends < ?", Time.now) }
+
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
 
@@ -31,13 +34,7 @@ class Ad < ActiveRecord::Base
   after_save :images_holder
 
   def active?
-    if self.created_at < self.ends
-      self.active = true
-      true
-    else
-      self.active = false
-      false
-    end
+    self.created_at < self.ends
   end
 
   def set_bid
