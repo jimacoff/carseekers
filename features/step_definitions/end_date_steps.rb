@@ -11,5 +11,5 @@ When(/^he insert "(.*?)" as end date for the ad$/) do |date|
 end
 
 Then(/^he should see "(.*?)" as remaining time for the ad$/) do |date|
-  expect(page).to have_content "29 days"
+  expect(page).to have_content date
 end
