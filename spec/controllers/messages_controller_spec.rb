@@ -11,9 +11,15 @@ describe MessagesController do
   describe "A User sends a message to another user" do
     before do
       @message = Message.make
+      @ad = Ad.make!
+      @ad.messages << @message
+      @ad.save!
+      @receiver.ads << @ad
+      @receiver.save!
       @valid_params = { :message => { :subject => @message.subject,
         :content => @message.content,
-        :to_id => @receiver }
+        :to_id => @receiver,
+        :ad_id => @ad.id }
       }
       post :create, @valid_params
     end
