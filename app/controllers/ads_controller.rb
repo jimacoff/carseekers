@@ -17,6 +17,7 @@ class AdsController < ApplicationController
   def show
       @ad = Ad.find(params[:id])
       @bid = Bid.new
+      @message = Message.new
     unless @ad.active?
       flash[:alert] = "This Ad has expired"
       redirect_to user_profiles_path(current_user)
@@ -34,6 +35,7 @@ class AdsController < ApplicationController
     @ad = Ad.create(ad_params)
     @ad.ends = Time.now + ad_params[:ends].to_i.days
     @ad.save!
+    @message = Message.new
     @bid = Bid.new
     render :show
   end
@@ -46,6 +48,7 @@ class AdsController < ApplicationController
     @ad = Ad.find(params[:id])
     @ad.update_attributes(ad_params)
     @bid = Bid.new
+    @message = Message.new
     render :show, :id => @ad.id
   end
 

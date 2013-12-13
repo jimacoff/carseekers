@@ -27,7 +27,14 @@ h1 {
   background-color: #E3F6FF;
 
   dd:first-child {
-    margin: 2rem 0 0 0;
+    margin: 1rem 0 0 0;
+  }
+
+  h4 {
+    margin: 0 0 1rem 0;
+  }
+  .message-button {
+    margin: 0 0 0 1.5rem;
   }
 }
 

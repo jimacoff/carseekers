@@ -9,21 +9,21 @@
         <div class="panel bidder">
           <dl>
             <% if @ad.user.id == current_user.id %>
-              <dd>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.ends) %></em></strong></dd>
-              <dd>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on <strong>your</strong> ad.</dd>
-              <dd>Highest Bid: <strong>£ <%= @ad.top_bid %></strong></dd><br/>
-              <dd>Would you like to edit this Ad?
-                <dd><%= button_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => @ad.id), :method => :get, :class => "button [success small radius round]"  %></dd>
-            <% else %>
+            <dd>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.ends) %></em></strong></dd>
+            <dd>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on <strong>your</strong> ad.</dd>
+            <dd>Highest Bid: <strong>£ <%= @ad.top_bid %></strong></dd><br/>
+            <dd>Would you like to edit this Ad?
+              <dd><%= button_to "Edit Ad", edit_user_ad_path(:user_id => current_user.id, :id => @ad.id), :method => :get, :class => "button [success small radius round]"  %></dd>
+              <% else %>
               <dd>Ending in: <strong><em><%= distance_of_time_in_words(@ad.created_at, @ad.ends) %></em></strong></dd>
               <dd>Currently there are <strong><em><%= @ad.bids.count %></em></strong> bids on this ad.</dd><br/>
               <%= form_for @bid, :url => bids_path(current_user, @ad) do |f| %>
-                <%= f.text_field :highest, :placeholder => "Insert your bid here" %>
-                <%= f.hidden_field :ad_id, :value => @ad.id %>
-                <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
+              <%= f.text_field :highest, :placeholder => "Insert your bid here" %>
+              <%= f.hidden_field :ad_id, :value => @ad.id %>
+              <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
               <% end %>
-            <dd>Highest Bid: <strong>£ <%= @ad.top_bid %></strong></dd>
-            <% end %>
+              <dd>Highest Bid: <strong>£ <%= @ad.top_bid %></strong></dd>
+              <% end %>
             </dl>
           </div>
         </section>
@@ -63,7 +63,22 @@
         <%= image_tag gravatar_picture_url(@ad.user, 120), :class => "ad-user-picture" %>
         <dl>
           <dd>Nick: <%= link_to @ad.user.nick, user_profiles_path(@ad.user) %></dd>
-          <dd>Contact</dd>
+          <% unless @ad.user.id == current_user.id %>
+            <div class="row">
+            <dd><h4>Contact:</h4></dd>
+              <div class="large-12 left">
+                <%= form_for @message, :url => messages_path(current_user, @message) do |f| %>
+                <%= f.label :subject %>
+                <%= f.text_field :subject, :placeholder => "Insert your subject" %>
+                <%= f.label :content %>
+                <%= f.text_field :content, :placeholder => "Insert your message" %>
+                <%= f.hidden_field :to_id, :value => @ad.user.id %>
+                <%= f.hidden_field :ad_id, :value => @ad.id %>
+                <%= f.submit "Send Message", :class => "button [success small radius round] message-button" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </dl>
       </div>
     </div>
