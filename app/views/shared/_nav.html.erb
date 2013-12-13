@@ -35,3 +35,15 @@
     </ul>
   </section>
 </nav>
+
+<% if flash[:notice] %>
+  <div class="notice">Notice: <%= flash[:notice] %></div>
+<% end %>
+
+<% if flash[:error] %>
+  <div class="error">Error: <%= flash[:error] %></div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert">Alert: <%= flash[:alert] %></div>
+<% end %>
