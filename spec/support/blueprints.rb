@@ -6,6 +6,11 @@ User.blueprint do
   password { "password" }
 end
 
+Message.blueprint do
+  subject { Faker::Lorem.words(rand(2..4)).join(' ') }
+  content { Faker::Lorem.sentences(rand(3..5)).join(' ') }
+end
+
 Ad.blueprint do
   title { Faker::Lorem.words(rand(2..4)).join(' ') }
   description { Faker::Lorem.sentences(rand(3..5)).join(' ') }

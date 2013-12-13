@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id         :integer          not null, primary key
+#  subject    :string(255)
+#  content    :text
+#  to_id      :integer
+#  from_id    :integer
+#  reply_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'spec_helper'
 
 describe Message do
