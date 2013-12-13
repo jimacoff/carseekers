@@ -23,6 +23,8 @@ source 'https://rubygems.org'
   gem 'gravatar-ultimate'
   gem 'carrierwave'
   gem 'mini_magick'
+  gem 'will_paginate', '~> 3.0'
+
   # Schema info in models
   gem 'annotate'
 
