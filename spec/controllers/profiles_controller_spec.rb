@@ -17,16 +17,6 @@ describe ProfilesController do
     end
   end
 
-  describe "GET to show" do
-    before do
-      get :show, :id => @user.profile.id, :user_id => @user.id
-    end
-
-    it "should work" do
-      expect(response).to be_success
-    end
-  end
-
   describe "Patch to update" do
     before do
       @previous_bio = "I don't like cars"
