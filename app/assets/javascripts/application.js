@@ -27,6 +27,28 @@ $( document ).ready(function() {
     loadModels(make_id);
   });
 
+  $('.delete-message').on('click', function(e) {
+    e.preventDefault();
+    var message_id = $(this).attr("data");
+    deleteMessage(message_id);
+  });
+
+  function deleteMessage(message_id) {
+    $.ajax({
+      type: "DELETE",
+      url: '/messages',
+      dataType: 'json',
+      data: { message : { id: message_id } },
+      success: function(json) {
+        removeMessage(json);
+      }
+    });
+  }
+
+  function removeMessage(json) {
+    $("#"+json.message.id).html("");
+  }
+
   function loadModels(make_id) {
     $.ajax({
       type: "POST",

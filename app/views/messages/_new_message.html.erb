@@ -1,13 +1,13 @@
-  <%= f.label :subject %>
-  <%= f.text_field :subject, :placeholder => "Insert your subject" %>
-  <%= f.label :content %>
-  <%= f.text_field :content, :placeholder => "Insert your message" %>
-  <% if @reply %>
-    <%= f.hidden_field :to_id, :value => @message.from_id %>
-    <%= f.hidden_field :reply_id, :value => @message.id %>
-    <%= f.hidden_field :ad_id, :value => @message.ad.id %>
-  <% else %>
-    <%= f.hidden_field :to_id, :value => @ad.user.id %>
-    <%= f.hidden_field :ad_id, :value => @ad.id %>
-  <% end %>
-  <%= f.submit "Send Message", :class => "button [success small radius round] message-button" %>
+<%= f.label :subject %>
+<%= f.text_field :subject, :placeholder => "Insert your subject" %>
+<%= f.label :content %>
+<%= f.text_field :content, :placeholder => "Insert your message" %>
+<% if @reply %>
+  <%= f.hidden_field :to_id, :value => @message.from_id %>
+  <%= f.hidden_field :reply_id, :value => @message.id %>
+  <%= f.hidden_field :ad_id, :value => @message.ad.id %>
+<% else %>
+  <%= f.hidden_field :to_id, :value => @ad.user.id %>
+  <%= f.hidden_field :ad_id, :value => @ad.id %>
+<% end %>
+<%= f.submit "Send Message", :class => "button [success small radius round] message-button" %>

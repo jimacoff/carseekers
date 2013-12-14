@@ -13,8 +13,17 @@ class MessagesController < ApplicationController
     @reply = Message.new
   end
 
+  def destroy
+    @message = Message.find(message_params[:id])
+    @message.destroy
+    respond_to do |format|
+      format.js { render :json => { :message => @message } }
+      format.html { render :nothing => :true }
+    end
+  end
+
   private
   def message_params
-    params.require(:message).permit(:subject, :content, :to_id, :from_id, :reply_id, :ad_id)
+    params.require(:message).permit(:subject, :content, :to_id, :from_id, :reply_id, :ad_id, :id)
   end
 end

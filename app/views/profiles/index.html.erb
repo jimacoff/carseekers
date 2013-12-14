@@ -74,12 +74,11 @@
                     </thead>
                     <tbody>
                       <% @profile.user.received_messages.each do |message| %>
-                      <tr>
+                      <tr id="<%= message.id %>">
                         <td><%= link_to message.subject, messages_path(message, :id => message.id) %></td>
                         <td><%= message.ad.title %></td>
                         <td><%= link_to User.find(message.from_id).nick, user_profiles_path(User.find(message.from_id)) %></td>
-                        <td>Delete</td>
-
+                        <td><a href="#" data="<%= message.id %>" class="delete-message">Delete</a></td>
                       </tr>
                       <% end %>
                     </tbody>
@@ -103,11 +102,11 @@
                     </thead>
                     <tbody>
                       <% @profile.user.sent_messages.each do |message| %>
-                      <tr>
+                      <tr id="<%= message.id %>">
                         <td><%= message.subject %></td>
                         <td><%= message.ad.title %></td>
                         <td><%= link_to User.find(message.to_id).nick, user_profiles_path(User.find(message.to_id)) %></td>
-                        <td>Delete</td>
+                        <td><a href="#" data="<%= message.id %>" class="delete-message">Delete</a></td>
                       </tr>
                       <% end %>
                     </tbody>

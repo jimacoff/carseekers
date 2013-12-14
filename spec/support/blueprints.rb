@@ -17,10 +17,22 @@ Ad.blueprint do
   starting_price { 2000.00 }
   buy_now_price { 10000.00 }
   ends { Time.now + 7.days }
+  Car
 end
 
 Ad.blueprint(:expired) do
   ends { Time.now - 3.days }
+end
+
+Car.blueprint do
+  fuel_type { "Petrol" }
+  age { "2004" }
+  style { "Cabriolet" }
+  engine { "2500cc - 3500cc" }
+  hp { "200hp - 300hp" }
+  color { "Red" }
+  Make
+  Model
 end
 
 Make.blueprint do
@@ -31,14 +43,6 @@ Model.blueprint do
   name { "TT" }
 end
 
-Car.blueprint do
-  fuel_type { "Petrol" }
-  age { "2004" }
-  style { "Cabriolet" }
-  engine { "2500cc - 3500cc" }
-  hp { "200hp - 300hp" }
-  color { "Red" }
-end
 
 Car.blueprint(:v2) do
   fuel_type { "Diesel" }

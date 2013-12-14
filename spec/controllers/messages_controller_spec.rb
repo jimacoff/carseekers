@@ -24,7 +24,6 @@ describe MessagesController do
       post :create, @valid_params
     end
 
-
     it "should have sent the message" do
       Message.first.subject.should eq(@message.subject)
     end
@@ -41,4 +40,20 @@ describe MessagesController do
       @sender.sent_messages.first.content.should eq(@message.content)
     end
   end
+
+  describe "A User deletes a message" do
+    before do
+      @message = Message.make!
+      @valid_params = { :message => {
+        :id => @message.id
+      }}
+
+      delete :destroy, @valid_params
+    end
+
+    it "should have deleted the message" do
+      Message.count.should eq(0)
+    end
+  end
+
 end
