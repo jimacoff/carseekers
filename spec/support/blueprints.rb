@@ -17,7 +17,7 @@ Ad.blueprint do
   starting_price { 2000.00 }
   buy_now_price { 10000.00 }
   ends { Time.now + 7.days }
-  Car
+  car
 end
 
 Ad.blueprint(:expired) do
@@ -31,8 +31,8 @@ Car.blueprint do
   engine { "2500cc - 3500cc" }
   hp { "200hp - 300hp" }
   color { "Red" }
-  Make
-  Model
+  make
+  model
 end
 
 Make.blueprint do

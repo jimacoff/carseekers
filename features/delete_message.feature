@@ -7,7 +7,6 @@ Feature: Delete message
     Given that there is already an ad
     Given that there is already another message
 
-    @wip
     Scenario: A User deletes a message
     Given that he is on his profile
     When he deletes a message
