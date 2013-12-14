@@ -12,7 +12,7 @@
     float: right;
   }
 
-  .profile-ads {
+  .profile-table {
     margin: 0;
 
     dd {
@@ -20,5 +20,12 @@
       margin: 0.4rem 0 0 0;
       border-bottom: 0.1rem solid black;
     }
+  }
+  .menu-container {
+    margin: 1rem 0 0 0;
+  }
+
+  .hidden {
+
   }
 }
