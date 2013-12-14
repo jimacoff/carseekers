@@ -1,0 +1,9 @@
+<section class="row">
+  <div class="large-10 large-centered columns">
+    <%= render :partial => 'received_message', :locals => { :message => @message, :ad => @message.ad }  %>
+    <h3>Reply</h3>
+    <%= form_for @reply, :url => messages_path(current_user, @reply) do |f| %>
+      <%= render :partial => 'messages/new_message', :locals => { :message => @reply, :ad => @message.ad, :f => f } %>
+    <% end %>
+  </div>
+</section>

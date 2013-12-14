@@ -19,12 +19,12 @@
     </div>
     <div class="row">
       <section class="large-10 large-centered columns profile">
-        <dl class="tabs" data-tab>
+        <dl class="tabs large-offset-1" data-tab>
           <dd class="active"><a href="#panel2-1"><h5>Your Ads:</h5></a></dd>
           <dd><a href="#panel2-2"><h5>Your Received Messages:</h5></a></dd>
           <dd><a href="#panel2-3"><h5>Your Sent Messages:</h5></a></dd>
         </dl>
-        <div class="tabs-content">
+        <div class="tabs-content large-8 large-offset-2">
           <div class="content active" id="panel2-1">
              <% if current_user.id == @profile.id %>
               <div class="row">
@@ -66,21 +66,20 @@
                   <table class="large-11 large-centered columns">
                     <thead>
                       <tr>
-                        <th width="200"><%= check_box("","") %></th>
                         <th>Subject</th>
                         <th width="150">Related Ad</th>
                         <th width="150">Sender</th>
-                        <th width="150">Reply</th>
+                        <th width="150">Delete</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% @profile.user.received_messages.each do |message| %>
                       <tr>
-                        <td><%= check_box("","") %></td>
-                        <td><%= message.subject %></td>
+                        <td><%= link_to message.subject, messages_path(message, :id => message.id) %></td>
                         <td><%= message.ad.title %></td>
                         <td><%= link_to User.find(message.from_id).nick, user_profiles_path(User.find(message.from_id)) %></td>
-                        <td><%= "Reply" %></td>
+                        <td>Delete</td>
+
                       </tr>
                       <% end %>
                     </tbody>
@@ -96,21 +95,19 @@
                   <table class="large-11 large-centered columns">
                     <thead>
                       <tr>
-                        <th width="200"><%= check_box("","") %></th>
                         <th>Subject</th>
                         <th width="150">Related Ad</th>
                         <th width="150">Sent to</th>
-                        <th width="150">Reply</th>
+                        <th width="150">Delete</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% @profile.user.sent_messages.each do |message| %>
                       <tr>
-                        <td><%= check_box("id","message.id") %></td>
                         <td><%= message.subject %></td>
                         <td><%= message.ad.title %></td>
                         <td><%= link_to User.find(message.to_id).nick, user_profiles_path(User.find(message.to_id)) %></td>
-                        <td><%= "Reply" %></td>
+                        <td>Delete</td>
                       </tr>
                       <% end %>
                     </tbody>

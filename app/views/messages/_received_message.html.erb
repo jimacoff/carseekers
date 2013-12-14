@@ -1,0 +1,9 @@
+<div class="panel received-message">
+  <dl>
+    <dd><strong>Subject</strong>: <%= @message.subject %></dd>
+    <dd><strong>From</strong>: <%= User.find(@message.from_id).nick %></dd>
+    <dd><strong>Received</strong>: <%= @message.created_at %></dd>
+    <h4>Message:</h4>
+    <dd><p><%= @message.content %><p></dd>
+  </dl>
+</div>

@@ -68,13 +68,7 @@
             <dd><h4>Contact:</h4></dd>
               <div class="large-12 left">
                 <%= form_for @message, :url => messages_path(current_user, @message) do |f| %>
-                <%= f.label :subject %>
-                <%= f.text_field :subject, :placeholder => "Insert your subject" %>
-                <%= f.label :content %>
-                <%= f.text_field :content, :placeholder => "Insert your message" %>
-                <%= f.hidden_field :to_id, :value => @ad.user.id %>
-                <%= f.hidden_field :ad_id, :value => @ad.id %>
-                <%= f.submit "Send Message", :class => "button [success small radius round] message-button" %>
+                  <%= render :partial => 'messages/new_message', :locals => { :message => @message, :ad => @ad, :f => f } %>
                 <% end %>
               </div>
             </div>

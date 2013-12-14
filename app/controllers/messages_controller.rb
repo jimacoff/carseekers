@@ -5,7 +5,12 @@ class MessagesController < ApplicationController
     @message.from = current_user
     @message.save!
     flash[:notice] = "Your message has been sent"
-    redirect_to user_ad_path(:user_id => @message.ad.user.id, :id => @message.ad.id)
+    redirect_to user_ad_path(:user_id => @message.from_id, :id => @message.ad.id)
+  end
+
+  def show
+    @message = Message.find(params[:id])
+    @reply = Message.new
   end
 
   private
