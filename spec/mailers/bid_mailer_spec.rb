@@ -7,23 +7,82 @@ describe BidMailer do
     ActionMailer::Base.deliveries = []
     @user = User.make!
     @ad = Ad.make!
-    BidMailer.winner(@user, @ad).deliver
   end
 
   after(:each) do
     ActionMailer::Base.deliveries.clear
   end
 
-  it 'should send an email' do
-    ActionMailer::Base.deliveries.count.should == 1
+  context "Winner email" do
+    before do
+      BidMailer.winner(@user, @ad).deliver
+    end
+
+    it 'should send an email' do
+      ActionMailer::Base.deliveries.count.should == 1
+    end
+
+    it 'should set the subject to the correct subject' do
+      ActionMailer::Base.deliveries.first.subject.should == "Congratulations! You have won the auction #{@ad.title}"
+    end
+
+    it 'renders the sender email' do
+      ActionMailer::Base.deliveries.first.from.should == ['info@carseekers.co.uk']
+    end
   end
 
-  it 'should set the subject to the correct subject' do
-    ActionMailer::Base.deliveries.first.subject.should == "Congratulations! You have won the auction #{@ad.title}"
+  context "Sold email" do
+    before do
+      BidMailer.sold(@user, @ad).deliver
+    end
+
+    it 'should send an email' do
+      ActionMailer::Base.deliveries.count.should == 1
+    end
+
+    it 'should set the subject to the correct subject' do
+      ActionMailer::Base.deliveries.first.subject.should == "Your Car has been sold!"
+    end
+
+    it 'renders the sender email' do
+      ActionMailer::Base.deliveries.first.from.should == ['info@carseekers.co.uk']
+    end
   end
 
-  it 'renders the sender email' do
-    ActionMailer::Base.deliveries.first.from.should == ['info@carseekers.co.uk']
+  context "Unsold email" do
+    before do
+      BidMailer.unsold(@user, @ad).deliver
+    end
+
+    it 'should send an email' do
+      ActionMailer::Base.deliveries.count.should == 1
+    end
+
+    it 'should set the subject to the correct subject' do
+      ActionMailer::Base.deliveries.first.subject.should == "Your Car was not sold..."
+    end
+
+    it 'renders the sender email' do
+      ActionMailer::Base.deliveries.first.from.should == ['info@carseekers.co.uk']
+    end
+  end
+
+  context "New bid email" do
+    before do
+      BidMailer.new_bid(@user, @ad).deliver
+    end
+
+    it 'should send an email' do
+      ActionMailer::Base.deliveries.count.should == 1
+    end
+
+    it 'should set the subject to the correct subject' do
+      ActionMailer::Base.deliveries.first.subject.should == "You have set the highest bid"
+    end
+
+    it 'renders the sender email' do
+      ActionMailer::Base.deliveries.first.from.should == ['info@carseekers.co.uk']
+    end
   end
 
 end
