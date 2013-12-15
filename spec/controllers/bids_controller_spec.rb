@@ -17,7 +17,7 @@ describe BidsController do
           :ad_id => @ad.id
         }
       }
-      post :create, @valid_params.merge(:user_id => @user.id)
+      post :create, @valid_params
     end
 
     it "should have the bid figures" do

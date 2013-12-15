@@ -42,12 +42,12 @@ describe Car do
     end
 
     it "should have find the previous car by different types" do
-      @fuel.should eq([@car])
-      @engine.should eq([@car])
-      @age.should eq([@car])
-      @hp.should eq([@car])
-      @color.should eq([@car])
-      @style.should eq([@car])
+      @fuel.should eq([@car, @car3])
+      @engine.should eq([@car, @car3])
+      @age.should eq([@car, @car3])
+      @hp.should eq([@car, @car3])
+      @color.should eq([@car, @car3])
+      @style.should eq([@car, @car3])
     end
 
     it "should have not finded the car with different values" do
