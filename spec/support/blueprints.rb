@@ -31,8 +31,15 @@ Car.blueprint do
   engine { "2500cc - 3500cc" }
   hp { "200hp - 300hp" }
   color { "Red" }
-  make
-  model
+end
+
+Car.blueprint(:v2) do
+  fuel_type { "Diesel" }
+  age { "1960" }
+  style { "State" }
+  engine { "< 1000cc" }
+  hp { "< 30hp" }
+  color { "blue" }
 end
 
 Make.blueprint do
@@ -42,7 +49,6 @@ end
 Model.blueprint do
   name { "TT" }
 end
-
 
 Car.blueprint(:v2) do
   fuel_type { "Diesel" }
