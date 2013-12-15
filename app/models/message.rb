@@ -10,6 +10,7 @@
 #  reply_id   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  ad_id      :integer
 #
 
 class Message < ActiveRecord::Base

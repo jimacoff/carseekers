@@ -10,6 +10,7 @@ source 'https://rubygems.org'
 
   # Postgres Database
   gem 'pg'
+  gem 'clockwork'
 
   gem 'thin'
   gem 'sass-rails', '~> 4.0.0'

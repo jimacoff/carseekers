@@ -12,6 +12,7 @@
 #  buy_now_price  :float
 #  ends           :date
 #  active         :boolean
+#  mailed         :boolean
 #
 
 require 'spec_helper'

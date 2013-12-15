@@ -12,6 +12,7 @@
 #  buy_now_price  :float
 #  ends           :date
 #  active         :boolean
+#  mailed         :boolean
 #
 
 class Ad < ActiveRecord::Base
@@ -25,6 +26,7 @@ class Ad < ActiveRecord::Base
 
   scope :active, Proc.new { where("ends > ?", Time.now) }
   scope :expired, Proc.new { where("ends < ?", Time.now) }
+  scope :finished, Proc.new { where("ends < ? AND mailed = false", Time.now) }
 
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
@@ -32,6 +34,20 @@ class Ad < ActiveRecord::Base
   #Callbacks
   before_save :set_bid
   after_save :images_holder
+
+  def self.mail_to
+    finished = self.finished
+    finished.map do |ad|
+      ad.mailed = true
+      ad.save!
+      if ad.top_bid > 0
+        BidMailer.winner(ad.user, ad).deliver
+        BidMailer.sold(ad.user, ad).deliver
+      else
+        BidMailer.unsold(ad.user, ad).deliver
+      end
+    end
+  end
 
   def active?
     self.created_at < self.ends
