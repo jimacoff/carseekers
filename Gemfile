@@ -35,9 +35,12 @@ source 'https://rubygems.org'
 
 group :development, :test do
 
+  #Standard
+  gem 'rake'
+
   #Debuging
   gem 'meta_request','0.2.1'
-  gem "better_errors"
+  gem 'better_errors'
   gem 'pry'
   gem 'pry-byebug'
   gem 'binding_of_caller'
