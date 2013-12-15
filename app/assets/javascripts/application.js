@@ -18,15 +18,49 @@
 
 $(function(){ $(document).foundation(); });
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
   var make_id = "";
+  var target_id = "";
 
-  $('#ad_car_attributes_make_id').on('change', function(e) {
-    make_id = $("#ad_car_attributes_make_id option:selected").first().attr('value');
-    loadModels(make_id);
+  // Homepage
+  $('#make_make_id').on('change', function(e) {
+    make_id = $("#make_make_id option:selected").first().attr('value');
+    target_id = $("#model_model_id");
+    loadModels(make_id, target_id);
   });
 
+  // Inside Ad
+  $('#ad_car_attributes_make_id').on('change', function(e) {
+    make_id = $("#ad_car_attributes_make_id option:selected").first().attr('value');
+    target_id = $("#ad_car_attributes_model_id");
+    loadModels(make_id, target_id);
+  });
+
+  // Ajax to load models
+  function loadModels(make_id, target_id) {
+    $.ajax({
+      type: "POST",
+      url: '/ads/model_selector',
+      dataType: 'json',
+      data: { make : { id: make_id } },
+      success: function(json) {
+        createModels(json, target_id);
+      }
+    });
+  }
+
+  // Create Models depending on target
+  function createModels(json, target_id) {
+    target_id.empty();
+    _(json.models).each(function(model, pos) {
+      console.log(model);
+        target_id.append($("<option>").attr('value',model.id).text(model.name));
+    });
+  }
+
+
+  //Ajax delete feature
   $('.delete-message').on('click', function(e) {
     e.preventDefault();
     var message_id = $(this).attr("data");
@@ -49,26 +83,4 @@ $( document ).ready(function() {
     $("#"+json.message.id).html("");
   }
 
-  function loadModels(make_id) {
-    $.ajax({
-      type: "POST",
-      url: '/ads/model_selector',
-      dataType: 'json',
-      data: { make : { id: make_id } },
-      success: function(json) {
-        createOption(json);
-      }
-    });
-  }
-
-  function createOption(json) {
-
-    var model_select = $("#ad_car_attributes_model_id");
-
-    model_select.empty();
-    _(json.models).each(function(model, pos) {
-      console.log(model);
-        model_select.append($("<option>").attr('value',model.id).text(model.name));
-    });
-  }
 });
