@@ -45,12 +45,13 @@ class Ad < ActiveRecord::Base
   accepts_nested_attributes_for :car, :allow_destroy => true
 
   #Geocoder
-  # geocoded_by :address
+  geocoded_by :location
 
   #Callbacks
   # after_validation :geocode
   before_save :set_bid
   after_save :images_holder
+  after_validation :geocode
 
   def self.mail_to
     finished = self.finished
@@ -92,4 +93,10 @@ class Ad < ActiveRecord::Base
   def top_bid
     Bid.where('ad_id = ? ', self.id).maximum(:highest)
   end
+
+  private
+  def location
+    "#{postcode} #{city}"
+  end
+
 end
