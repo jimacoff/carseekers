@@ -15,12 +15,15 @@
 //= require underscore
 //= require foundation
 //= require backbone
+//= require boot
 //= require backbone_rails_sync
 //= require backbone_datalink
 //= require backbone/carseekers
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+var maps;
 
 $(document).ready(function() {
 
@@ -58,7 +61,6 @@ $(document).ready(function() {
   function createModels(json, target_id) {
     target_id.empty();
     _(json.models).each(function(model, pos) {
-      console.log(model);
         target_id.append($("<option>").attr('value',model.id).text(model.name));
     });
   }

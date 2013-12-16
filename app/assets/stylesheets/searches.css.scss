@@ -8,10 +8,19 @@
 }
 
 .search-button {
-  display: block;
+  display: inline-block;
+  margin: 1rem 0 0 0;
+}
+
+.search-map-button {
+  display: inline-block;
   margin: 1rem 0 0 0;
 }
 
 .search-title {
   display: block;
+}
+
+.postcode-holder {
+  margin: 1rem 0 0 0;
 }

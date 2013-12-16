@@ -13,9 +13,11 @@ Given(/^that there is already various ads$/) do
 end
 
 When(/^he selects the car to search$/) do
- select('Audi', :from => 'search[make_id]')
- select('TT', :from => 'search[model_id]')
- click_button "Search"
+  select('Audi', :from => 'search[make_id]')
+  page.execute_script %Q{ $("#search_model_id").append($("<option>").attr('value',1).text('TT')) }
+  sleep(1)
+  select('TT', :from => 'search[model_id]')
+  click_button "Search"
 end
 
 Then(/^he should see a list of cars that matches the criteria$/) do

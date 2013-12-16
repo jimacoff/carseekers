@@ -12,6 +12,8 @@ When(/^he fills in the Ad information$/) do
   @bid = Bid.make!
   @car_v2 = Car.make!(:v2)
   select('Audi', :from => 'ad[car_attributes][make_id]')
+  page.execute_script %Q{ $("#ad_car_attributes_model_id").append($("<option>").attr('value',1).text('TT')) }
+  sleep(1)
   select('TT', :from => 'ad[car_attributes][model_id]')
   select(@car_v2.engine, :from => 'ad[car_attributes][engine]')
   select(@car_v2.hp, :from => 'ad[car_attributes][hp]')

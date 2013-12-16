@@ -15,5 +15,12 @@
       </div>
       <%= submit_tag "Search", :class => "button [success small radius round] search-button"  %>
     <% end %>
+    <% if onmap %>
+      <div class="postcode-holder">
+        <h3>Show your nearest results!</h3>
+        <%= text_field :search, :postcode, :placeholder => "Insert your postcode" %>
+        <%= submit_tag "Show on map!", :class => "button [success small radius round] search-map-button", :id => "map-trigger" %>
+      </div>
+    <% end %>
   </div>
 </section>

@@ -1,6 +1,8 @@
 app.collections.AdList = Backbone.Collection.extend({
 
   model: app.models.Ad,
-  url: '/ads',
+  url: function(){
+    return '/ads/map';
+  }
 
 });

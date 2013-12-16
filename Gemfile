@@ -26,7 +26,8 @@ source 'https://rubygems.org'
   gem 'mini_magick'
   gem 'will_paginate', '~> 3.0'
   gem 'foundation-will_paginate'
-  gem "geocoder"
+  gem 'geocoder'
+  gem 'gmaps4rails'
 
   # Schema info in models
   gem 'annotate'
@@ -64,5 +65,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'simplecov', :require => false
+  gem 'timecop'
 
 end
