@@ -33,6 +33,9 @@ source 'https://rubygems.org'
   # Api's
   gem 'edmunds_ruby'
 
+  # Backbone
+  gem "rails-backbone"
+
 group :development, :test do
 
   #Standard
