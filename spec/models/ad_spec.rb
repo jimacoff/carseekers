@@ -114,28 +114,25 @@ describe Ad do
 
   context "Scoped relationships will filter through" do
     before do
-      @make = Make.make!
-      @model = Model.make!
-      @car2 = Car.make!
-      @car3 = Car.make!
-      @car.make = @make
-      @car.model = @model
-      @car.save!
-      @car2.make = @make
-      @car2.model = @model
-      @car2.save!
-      @car3.make = Make.make!(:name => "Seat")
-      @car3.model = Model.make!(:name => "Panda")
+      @car = Car.make!(:complete)
+      @car2 = Car.make!(:v2)
+      @car2.make = Make.make!(:name => "Seat")
+      @car2.model = Model.make!(:name => "Panda")
+      @ad.car = @car
+      @ad.save!
+      @ad2 = Ad.make!
+      @ad2.car = @car2
+      @ad2.save!
     end
 
     it "should have the correct list of cars from the same make" do
-      Car.with_make(@make.id).should eq([@car, @car2])
-      Car.with_make(@make.id).should_not eq([@car3])
+      Ad.with_make(@car.make.id).should eq([@ad])
+      Ad.with_make(@car.make.id).should_not eq([@ad2])
     end
 
     it "should have the correct list of cars from the same make" do
-      Car.with_model(@model.id).should eq([@car, @car2])
-      Car.with_model(@model.id).should_not eq([@car3])
+      Ad.with_model(@car.model.id).should eq([@ad])
+      Ad.with_model(@car.model.id).should_not eq([@ad2])
     end
   end
 end
