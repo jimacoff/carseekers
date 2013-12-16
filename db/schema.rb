@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216120113) do
+ActiveRecord::Schema.define(version: 20131216103217) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20131216120113) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "postcode"
-    t.string   "city"
   end
 
   create_table "bids", force: true do |t|
