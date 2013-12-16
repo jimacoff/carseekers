@@ -26,6 +26,7 @@ source 'https://rubygems.org'
   gem 'mini_magick'
   gem 'will_paginate', '~> 3.0'
   gem 'foundation-will_paginate'
+  gem "geocoder"
 
   # Schema info in models
   gem 'annotate'
