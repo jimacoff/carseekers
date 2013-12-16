@@ -3,6 +3,7 @@ Feature: Login
   Background:
     Given the user is already registered
 
+  @javascript
   Scenario: A User signs in
     Given that he is on the homepage
     And he clicks on "Sign in - Register"

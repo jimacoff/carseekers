@@ -1,6 +1,6 @@
 When(/^he deletes a message$/) do
-  click_link "Your Received Messages:"
   click_link "Delete"
+  click_link "Your Received Messages:"
 end
 
 Then(/^he should not see that message anymore$/) do

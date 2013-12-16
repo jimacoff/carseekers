@@ -14,8 +14,6 @@ end
 
 When(/^he selects the car to search$/) do
  select('Audi', :from => 'search[make_id]')
- page.execute_script %Q{ $("#search_model_id").append($("<option>").attr('value',1).text('TT')) }
- sleep(1)
  select('TT', :from => 'search[model_id]')
  click_button "Search"
 end
