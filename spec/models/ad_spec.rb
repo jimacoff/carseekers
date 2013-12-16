@@ -73,4 +73,69 @@ describe Ad do
       @expired.active?.should_not eq(true)
     end
   end
+
+  before do
+    @ad2 = Ad.make!(:complete)
+    @car = Car.make!
+    @ad3 = Ad.make!
+    @ad3.car = Car.make!(:v2)
+    @ad3.car.make = Make.make!(:name => "Seat")
+    @ad3.car.model = Model.make!(:name => "Panda")
+    @ad3.car.save!
+    @ad3.save!
+  end
+
+  context "Scoped attributes will filter the results" do
+    before do
+      @engine = Ad.by_engine(@ad2.car.engine)
+      @age = Ad.by_age(@ad2.car.age)
+      @hp = Ad.by_hp(@ad2.car.hp)
+      @color = Ad.by_color(@ad2.car.color)
+      @style = Ad.by_style(@ad2.car.style)
+    end
+
+    it "should have find the previous car by different types" do
+      @engine.should eq([@ad, @ad2])
+      @age.should eq([@ad, @ad2])
+      @hp.should eq([@ad, @ad2])
+      @color.should eq([@ad, @ad2])
+      @style.should eq([@ad, @ad2])
+    end
+
+    it "should have not finded the car with different values" do
+      @fuel.should_not eq(@ad3)
+      @engine.should_not eq(@ad3)
+      @age.should_not eq(@ad3)
+      @hp.should_not eq(@ad3)
+      @color.should_not eq(@ad3)
+      @style.should_not eq(@ad3)
+    end
+  end
+
+  context "Scoped relationships will filter through" do
+    before do
+      @make = Make.make!
+      @model = Model.make!
+      @car2 = Car.make!
+      @car3 = Car.make!
+      @car.make = @make
+      @car.model = @model
+      @car.save!
+      @car2.make = @make
+      @car2.model = @model
+      @car2.save!
+      @car3.make = Make.make!(:name => "Seat")
+      @car3.model = Model.make!(:name => "Panda")
+    end
+
+    it "should have the correct list of cars from the same make" do
+      Car.with_make(@make.id).should eq([@car, @car2])
+      Car.with_make(@make.id).should_not eq([@car3])
+    end
+
+    it "should have the correct list of cars from the same make" do
+      Car.with_model(@model.id).should eq([@car, @car2])
+      Car.with_model(@model.id).should_not eq([@car3])
+    end
+  end
 end

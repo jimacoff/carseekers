@@ -28,14 +28,27 @@ class Ad < ActiveRecord::Base
   scope :expired, Proc.new { where("ends < ?", Time.now) }
   scope :finished, Proc.new { where("ends < ? AND mailed = false", Time.now) }
 
+  #Scope Car Attrs
+  scope :by_fuel, Proc.new { |fuel_type| joins(:car).where("fuel_type = ?", fuel_type) }
+  scope :by_engine, Proc.new { |engine| joins(:car).where("engine = ?", engine) }
+  scope :by_age, Proc.new { |age| joins(:car).where("age = ?", age) }
+  scope :by_hp, Proc.new { |hp| joins(:car).where("hp = ?", hp) }
+  scope :by_style, Proc.new { |style| joins(:car).where("style = ?", style) }
+  scope :by_color, Proc.new { |color| joins(:car).where("color = ?", color) }
+
+  #Scope Car Relationships
+  scope :with_make, Proc.new { |make_id| joins(:car => :make).where("cars.make_id" => make_id) }
+  scope :with_model, Proc.new { |model_id| joins(:car => :model).where("cars.model_id" => model_id) }
+
+
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
 
   #Geocoder
-  geocoded_by :address
+  # geocoded_by :address
 
   #Callbacks
-  after_validation :geocode
+  # after_validation :geocode
   before_save :set_bid
   after_save :images_holder
 
