@@ -13,6 +13,10 @@
 #  ends           :date
 #  active         :boolean
 #  mailed         :boolean
+#  latitude       :float
+#  longitude      :float
+#  postcode       :string(255)
+#  city           :string(255)
 #
 
 require 'spec_helper'

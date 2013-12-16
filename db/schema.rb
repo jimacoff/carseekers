@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216120113) do
+ActiveRecord::Schema.define(version: 20131216200143) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
