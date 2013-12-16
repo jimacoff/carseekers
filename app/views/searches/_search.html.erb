@@ -1,0 +1,19 @@
+<section class="large-12 large-centered columns">
+  <div class="large-8 large-centered columns panel callout radius search-box">
+    <h2><%= title %></h2>
+    <%= form_tag '/search', method: "get" do %>
+      <%= collection_select :search, :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
+      <%= collection_select :search, :model_id, Model.order(:name), :id, :name, :prompt => "Select Model" %>
+      <a href="#" id="more-search-trigger">More search options</a>
+      <div id="more-search" class="hidden">
+        <%= select_tag "search[fuel_type]", options_for_select(fuel_type, params[:search]), :prompt => "Select Fuel Type" %>
+        <%= select_tag "search[engine]", options_for_select(engine, params[:search]), :prompt => "Select Engine" %>
+        <%= select_tag "search[hp]", options_for_select(power, params[:search]), :prompt => "Select Power" %>
+        <%= select_tag "search[age]", options_for_select((1960..Date.today.year).to_a, params[:search]), :prompt => "Select Year" %>
+        <%= select_tag "search[style]", options_for_select(style, params[:search]), :prompt => "Select Style" %>
+        <%= select_tag "search[color]", options_for_select(color, params[:search]), :prompt => "Select Color" %>
+      </div>
+      <%= submit_tag "Search", :class => "button [success small radius round] search-button"  %>
+    <% end %>
+  </div>
+</section>

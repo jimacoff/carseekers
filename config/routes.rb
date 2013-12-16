@@ -6,6 +6,7 @@ Carseekers::Application.routes.draw do
   root 'pages#index'
   get 'ads', :to => 'ads#index', :as => 'all_ads'
   post "ads/model_selector", :to => 'ads#model_selector', :as => "model_selector"
+  get 'search', :to => 'searches#index', :as => 'search'
   resource :messages, :only => [:create, :show, :destroy]
   resources :users do
     resources :profiles, :only => [:index, :show, :edit, :update]

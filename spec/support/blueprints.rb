@@ -6,6 +6,10 @@ User.blueprint do
   password { "password" }
 end
 
+User.blueprint(:complete) do
+  ad(:complete)
+end
+
 Message.blueprint do
   subject { Faker::Lorem.words(rand(2..4)).join(' ') }
   content { Faker::Lorem.sentences(rand(3..5)).join(' ') }
@@ -18,6 +22,10 @@ Ad.blueprint do
   buy_now_price { 10000.00 }
   ends { Time.now + 7.days }
   car
+end
+
+Ad.blueprint(:complete) do
+  car(:complete)
 end
 
 Ad.blueprint(:expired) do
@@ -40,6 +48,11 @@ Car.blueprint(:v2) do
   engine { "< 1000cc" }
   hp { "< 30hp" }
   color { "blue" }
+end
+
+Car.blueprint(:complete) do
+  make
+  model
 end
 
 Make.blueprint do

@@ -10,4 +10,4 @@ Pivotal Tracker: [Visit Project](https://www.pivotaltracker.com/s/projects/97146
 
 Heroku deployment url (note: this deployment version might be a previous iteration): [Visit Heroku](http://blooming-headland-3745.herokuapp.com/)
 
-Developed by Edgar Cumbreras: [See my CV](http://about.me/iamedgar)
+Developed by Edgar Cumbreras: [Visit my about me page :)](http://about.me/iamedgar)

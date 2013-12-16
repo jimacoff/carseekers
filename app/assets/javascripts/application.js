@@ -24,9 +24,9 @@ $(document).ready(function() {
   var target_id = "";
 
   // Homepage
-  $('#make_make_id').on('change', function(e) {
-    make_id = $("#make_make_id option:selected").first().attr('value');
-    target_id = $("#model_model_id");
+  $('#search_make_id').on('change', function(e) {
+    make_id = $("#search_make_id option:selected").first().attr('value');
+    target_id = $("#search_model_id");
     loadModels(make_id, target_id);
   });
 
@@ -58,7 +58,6 @@ $(document).ready(function() {
         target_id.append($("<option>").attr('value',model.id).text(model.name));
     });
   }
-
 
   //Ajax delete feature
   $('.delete-message').on('click', function(e) {

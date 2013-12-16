@@ -23,23 +23,17 @@
 }
 
 .notice {
-  font-weight: bold;
-  padding: 1rem;
+  @extend .error;
   background-color: #C4FFAE;
   border-top: 0.3rem solid #19FF59;
   border-bottom: 0.3rem solid #19FF59;
-  color: black;
-  text-align: center;
 }
 
 .alert {
-  font-weight: bold;
-  padding: 1rem;
+  @extend .error;
   background-color: #FFB553;
   border-top: 0.3rem solid #FF6700;
   border-bottom: 0.3rem solid #FF6700;
-  color: black;
-  text-align: center;
 }
 
 .logo {
@@ -48,4 +42,8 @@
   &:hover {
         color:#003F76;
     }
+}
+
+.hidden {
+  display: none;
 }

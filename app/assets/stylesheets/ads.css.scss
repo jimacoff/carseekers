@@ -74,7 +74,6 @@ h1 {
 
 .ad-list-item {
   display: block;
-  padding: 1rem 0 0 3rem;
   border-top: 0.1rem solid black;
   border-bottom: 0.1rem solid black;
   .view-car {
@@ -111,7 +110,16 @@ h1 {
   }
 }
 
+.list-item-holder {
+  clear: both;
+}
+
 .list-paginated {
   display: block;
   margin: 1.3rem 0 0 0;
+}
+
+#search-ad-trigger {
+  display: block;
+  margin: 0 0 1rem 0;
 }

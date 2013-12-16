@@ -11,6 +11,7 @@ class AdsController < ApplicationController
 
   def index
     @ads = Ad.active.paginate(:page => params[:page], :per_page => 5).order('id DESC')
+    @title = "Latest Auctions"
   end
 
   def show
@@ -59,6 +60,6 @@ class AdsController < ApplicationController
 
   private
   def ad_params
-    params.require(:ad).permit(:title, :description, :user_id, :starting_price, :buy_now_price, :ends, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id, :engine, :hp, :fuel_type, :age, :style, :color], :bids_attributes => [:actual, :highest, :buy_now_price])
+    params.require(:ad).permit(:ads, :title, :description, :user_id, :starting_price, :buy_now_price, :ends, :images_attributes => [:carphoto, :id, :_destroy], :car_attributes => [:make_id, :model_id, :engine, :hp, :fuel_type, :age, :style, :color], :bids_attributes => [:actual, :highest, :buy_now_price])
   end
 end

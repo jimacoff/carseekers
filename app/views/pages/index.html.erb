@@ -1,12 +1,5 @@
 <div class="row">
-
-  <section class="large-12 large-centered columns">
-    <div class="large-10 large-centered columns panel callout radius search-box">
-      <h2>Find your new auto here!</h2>
-        <%= collection_select :make, :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
-
-        <%= collection_select :model, :model_id, Model.order(:name), :id, :name, :prompt => "Select Model" %>
-    </div>
-  </section>
-
+  <div>
+    <%= render :partial => '/searches/search', :locals => { :title => "Find your new auto here!"} %>
+  </div>
 </div>
