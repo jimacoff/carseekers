@@ -31,7 +31,11 @@ class Ad < ActiveRecord::Base
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
 
+  #Geocoder
+  geocoded_by :address
+
   #Callbacks
+  after_validation :geocode
   before_save :set_bid
   after_save :images_holder
 
