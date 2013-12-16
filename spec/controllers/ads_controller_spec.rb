@@ -112,4 +112,16 @@ describe AdsController do
     end
   end
 
+  describe "Delete to destroy" do
+    before do
+      @ad = Ad.make!
+
+      delete :destroy, { :id => @ad.id, :user_id => @user.id }
+    end
+
+    it "should have removed the ad" do
+      Ad.count.should eq(0)
+    end
+  end
+
 end
