@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def rate
+    [['Negative', 1], ['Neutral', 2], ['Positive', 3]]
+  end
+
   def end_date
     [['1 Day', 1], ['7 Days', 7], ['30 Days', 30]]
   end
