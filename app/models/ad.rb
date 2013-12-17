@@ -76,6 +76,7 @@ class Ad < ActiveRecord::Base
   def set_bid
     unless self.top_bid
       bid = Bid.new
+      bid.user = current_user
       bid.highest = self.starting_price
       bid.save
       self.bids << bid
