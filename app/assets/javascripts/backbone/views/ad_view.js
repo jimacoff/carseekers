@@ -4,10 +4,6 @@ app.views.AdsView = Backbone.View.extend({
   className: 'canvas-holder',
   events: {},
 
-  // initialize: function(){
-  //   this.listenTo(this.collection, "reset", this.render);
-  // },
-
   render: function(){
     var ads = this.collection.models;
     var _this = this;
@@ -24,21 +20,46 @@ app.views.AdsView = Backbone.View.extend({
     };
 
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+     this.loadMarkers(ads);
 
-    this.loadMarkers(ads);
   },
 
   loadMarkers: function(ads){
 
     var bounds = new google.maps.LatLngBounds();
     var _this = this;
-    _(ads).each(function(ad) {
-      _this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city);
-      bounds.extend(new google.maps.LatLng(ad.attributes.latitude, ad.attributes.longitude));
-    });
+    var markers = [];
+    function contentString(ad) { return '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1>'+ ad.attributes.title +'</h1>'+
+      '<div id="bodyContent">'+
+      '<p>This car is located in <b>'+ ad.attributes.city +'</b>, near to '+ ad.attributes.postcode +
+      '</br>with a starting price of £<strong>' + ad.attributes.starting_price +
+      '</br><a href="/users/'+ ad.attributes.user_id +'/ads/'+ ad.attributes.id +'">Visit this Auction!</a>' +
+      '</strong></div>'+
+      '</div>';
+    }
 
+    _(ads).each(function(ad) {
+      // _this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city);
+      bounds.extend(new google.maps.LatLng(ad.attributes.latitude, ad.attributes.longitude));
+      google.maps.event.addListener(_this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city), 'click', function() {
+        var infowindow = new google.maps.InfoWindow();
+        infowindow.setContent(contentString(ad));
+        infowindow.open(map, _this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city));
+      });
+    });
      map.fitBounds(bounds);
+     // return markers;
   },
+
+  infoWindow: function(title){
+    new google.maps.InfoWindow({
+      content: title
+    });
+  },
+
 
   addMarker: function(lat, lng, title) {
     var iconBase = '/assets/';
@@ -48,6 +69,7 @@ app.views.AdsView = Backbone.View.extend({
       title: title,
       icon: iconBase + 'car.ico'
     });
+    return marker;
   },
 
   zoomToMarker: function(lat, lng, title) {
@@ -55,7 +77,6 @@ app.views.AdsView = Backbone.View.extend({
     this.addMarker(lat, lng, title);
     bounds.extend(new google.maps.LatLng(lat, lng));
     map.fitBounds(bounds);
-  }
-
+  },
 
 });
