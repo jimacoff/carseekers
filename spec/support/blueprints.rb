@@ -84,3 +84,8 @@ end
 Bid.blueprint do
   highest { 2000.00 }
 end
+
+Rating.blueprint do
+  rate { 3 }
+  comment { Faker::Lorem.words(rand(2..4)).join(' ') }
+end
