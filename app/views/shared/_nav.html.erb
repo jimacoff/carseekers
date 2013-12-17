@@ -32,6 +32,14 @@
       <li><%= link_to "Latest auctions", all_ads_path %></li>
       <li><%= link_to "Sell your car", new_user_ad_path(:user_id => current_user.id) if current_user %></li>
       <li><%= link_to "Reviews", root_path %></li>
+      <li>
+          <div class="large-12 small-9 columns">
+            <input type="text" placeholder="Find Stuff">
+          </div>
+      </li>
+      <li class="has-form">
+        <a href="#" class="button">Search</a>
+      </li>
     </ul>
   </section>
 </nav>
