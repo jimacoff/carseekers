@@ -44,7 +44,6 @@ class Ad < ActiveRecord::Base
   scope :with_make, Proc.new { |make_id| joins(:car => :make).where("cars.make_id" => make_id) }
   scope :with_model, Proc.new { |model_id| joins(:car => :model).where("cars.model_id" => model_id) }
 
-
   accepts_nested_attributes_for :images, :allow_destroy => true
   accepts_nested_attributes_for :car, :allow_destroy => true
 
@@ -52,7 +51,6 @@ class Ad < ActiveRecord::Base
   geocoded_by :location
 
   #Callbacks
-  # after_validation :geocode
   before_save :set_bid
   after_save :images_holder
   after_validation :geocode
@@ -92,6 +90,10 @@ class Ad < ActiveRecord::Base
         self.images << Image.new
       end
     end
+  end
+
+  def top_bidder
+    User.find(self.bids.find_by_highest(self.top_bid).user_id)
   end
 
   def top_bid

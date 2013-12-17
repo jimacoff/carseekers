@@ -13,7 +13,7 @@ class BidsController < ApplicationController
 
  private
   def bid_params
-    params.require(:bid).permit(:ad_id, :highest)
+    params.require(:bid).permit(:ad_id, :highest, :user_id)
   end
 
 end
