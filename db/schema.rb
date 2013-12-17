@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131216200143) do
+ActiveRecord::Schema.define(version: 20131217150754) do
 
   create_table "ads", force: true do |t|
     t.integer  "user_id"
@@ -91,6 +91,15 @@ ActiveRecord::Schema.define(version: 20131216200143) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "bio"
+  end
+
+  create_table "ratings", force: true do |t|
+    t.text     "comment"
+    t.integer  "rate"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
