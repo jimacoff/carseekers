@@ -21,7 +21,7 @@
                 <%= form_for @bid, :url => bids_path(current_user, @ad) do |f| %>
                   <%= f.text_field :highest, :placeholder => "Insert your bid here" %>
                   <%= f.hidden_field :ad_id, :value => @ad.id %>
-                  <%= f.text_field :user_id, :value => current_user.id %>
+                  <%= f.hidden_field :user_id, :value => current_user.id %>
                   <%= f.submit "Place Bid", :class => "button [success small radius round]" %>
                   <% end %>
               <% end %>

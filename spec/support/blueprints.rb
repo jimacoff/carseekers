@@ -21,6 +21,7 @@ Ad.blueprint do
   starting_price { 2000.00 }
   buy_now_price { 10000.00 }
   ends { Time.now + 7.days }
+  mailed { false }
   car
 end
 

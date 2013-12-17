@@ -60,8 +60,8 @@ class Ad < ActiveRecord::Base
     finished.map do |ad|
       ad.mailed = true
       ad.save!
-      if ad.top_bid > 0
-        BidMailer.winner(ad.user, ad).deliver
+      if ad.sold?
+        BidMailer.winner(ad.top_bidder, ad).deliver
         BidMailer.sold(ad.user, ad).deliver
       else
         BidMailer.unsold(ad.user, ad).deliver
@@ -98,6 +98,14 @@ class Ad < ActiveRecord::Base
 
   def top_bid
     Bid.where('ad_id = ? ', self.id).maximum(:highest)
+  end
+
+  def sold?
+    unless self.active? && self.top_bidder != self.user && self.top_bid > self.starting_price
+      true
+    else
+      false
+    end
   end
 
   private
