@@ -29,37 +29,18 @@ app.views.AdsView = Backbone.View.extend({
     var bounds = new google.maps.LatLngBounds();
     var _this = this;
     var markers = [];
-    function contentString(ad) { return '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1>'+ ad.attributes.title +'</h1>'+
-      '<div id="bodyContent">'+
-      '<p>This car is located in <b>'+ ad.attributes.city +'</b>, near to '+ ad.attributes.postcode +
-      '</br>with a starting price of £<strong>' + ad.attributes.starting_price +
-      '</br><a href="/users/'+ ad.attributes.user_id +'/ads/'+ ad.attributes.id +'">Visit this Auction!</a>' +
-      '</strong></div>'+
-      '</div>';
-    }
+    var bubble = _.template('<div id="siteNotice"></div><h1> <%= title %> </h1><div id="bodyContent"><p>This car is located in <b> <%= city %> </b>, near to  <%= postcode %></br>with a starting price of £<strong><%= starting_price %></br><a href="/users/<%= user_id %>/ads/<%= id %>">Visit this Auction!</a></strong></div></div>');
 
     _(ads).each(function(ad) {
-      // _this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city);
       bounds.extend(new google.maps.LatLng(ad.attributes.latitude, ad.attributes.longitude));
       google.maps.event.addListener(_this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city), 'click', function() {
         var infowindow = new google.maps.InfoWindow();
-        infowindow.setContent(contentString(ad));
+        infowindow.setContent(bubble({title: ad.attributes.title, city: ad.attributes.city, postcode: ad.attributes.postcode, starting_price: ad.attributes.starting_price, user_id: ad.attributes.user_id, id: ad.attributes.id}));
         infowindow.open(map, _this.addMarker(ad.attributes.latitude, ad.attributes.longitude, ad.attributes.city));
       });
     });
      map.fitBounds(bounds);
-     // return markers;
   },
-
-  infoWindow: function(title){
-    new google.maps.InfoWindow({
-      content: title
-    });
-  },
-
 
   addMarker: function(lat, lng, title) {
     var iconBase = '/assets/';

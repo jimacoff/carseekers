@@ -32,6 +32,14 @@ describe Ad do
 
   before do
     @ad = Ad.make!
+    @ad2 = Ad.make!(:complete)
+    @car = Car.make!
+    @ad3 = Ad.make!
+    @ad3.car = Car.make!(:v2)
+    @ad3.car.make = Make.make!(:name => "Seat")
+    @ad3.car.model = Model.make!(:name => "Panda")
+    @ad3.car.save!
+    @ad3.save!
   end
 
   context "Ad will always have 5 images, even if they are empty" do
@@ -76,17 +84,6 @@ describe Ad do
     it "the expired ad should be NOT active" do
       @expired.active?.should_not eq(true)
     end
-  end
-
-  before do
-    @ad2 = Ad.make!(:complete)
-    @car = Car.make!
-    @ad3 = Ad.make!
-    @ad3.car = Car.make!(:v2)
-    @ad3.car.make = Make.make!(:name => "Seat")
-    @ad3.car.model = Model.make!(:name => "Panda")
-    @ad3.car.save!
-    @ad3.save!
   end
 
   context "Scoped attributes will filter the results" do
@@ -139,4 +136,52 @@ describe Ad do
       Ad.with_model(@car.model.id).should_not eq([@ad2])
     end
   end
+
+  context "A Sellers and Buyers will get informed" do
+    before do
+      @newuser = User.make!
+      @highest_bid = Bid.make!(:user_id => @newuser.id, :highest => 3000.00)
+      @ad_expired = Ad.make!(:expired)
+      @ad_expired.bids << @highest_bid
+      @ad_expired.save!
+      @newuser.ads << @ad_expired
+      @newuser.save!
+      Ad.mail_to
+    end
+
+    it "should set mailed when sends an email" do
+      @ad_expired.reload
+      @ad_expired.mailed.should eq(true)
+    end
+  end
+
+  context "Ad knows the top bidder and if has been sold" do
+    before do
+      @highest_amount = 2500.00
+      @lowest_amount = 2200.00
+      @bidder_max = User.make!
+      @bidder_min = User.make!
+      @ad_expired = Ad.make!(:expired)
+      @highest_bid = Bid.make!(:user_id => @bidder_max.id, :highest => @highest_amount)
+      @lowest_bid = Bid.make!(:user_id => @bidder_min.id, :highest => @lowest_amount)
+
+      @ad_expired.bids << @highest_bid
+      @ad_expired.bids << @lowest_bid
+
+      @ad.bids << @highest_bid
+      @ad.bids << @lowest_bid
+      @ad.save!
+    end
+
+    it "top bidder should return the maximum bidder" do
+      @ad.top_bidder.should eq(@bidder_max)
+      @ad.top_bidder.should_not eq(@bidder_min)
+    end
+
+    it "sold should let you know the status of the ad" do
+      @ad.sold?.should eq(false)
+      @ad_expired.sold?.should eq(true)
+    end
+  end
+
 end
