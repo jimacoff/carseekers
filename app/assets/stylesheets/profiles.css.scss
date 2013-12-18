@@ -3,6 +3,41 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .profile {
 
+  .profile-ratings {
+    margin: 1rem 1rem 0 0.9rem;
+
+    h4 {
+      margin: 0 0 2rem 0;
+    }
+
+    h5 {
+      display: inline-block;
+      line-height: 0.2;
+    }
+  }
+
+  .rating {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    margin: 0.1rem 1rem 0 0;
+  }
+
+  .positive-rating {
+    @extend .rating;
+    background-image: image-url("positive.png");
+  }
+
+  .neutral-rating {
+    @extend .rating;
+    background-image: image-url("neutral.png");
+  }
+
+  .negative-rating {
+    @extend .rating;
+    background-image: image-url("negative.png");
+  }
+
   .profile-picture {
     margin: 0.5rem 0 0 2rem;
   }

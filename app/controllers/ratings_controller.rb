@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
 
   def create
     @rating = Rating.create(rating_params)
-    render :json => { :rating => "trigger" }
+    render :json => { :rating => "completed" }
   end
 
   private

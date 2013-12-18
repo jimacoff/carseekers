@@ -2,8 +2,18 @@
   <h1><strong><em><%= @profile.user.nick %></em></strong> Profile</h1>
   <section class="large-12 large-centered columns profile">
       <div class="row">
-        <div class="medium-3 columns">
+        <div class="large-3 columns">
           <%= image_tag gravatar_picture_url(@profile.user, 250), :class => "profile-picture right" %>
+          <div class="row">
+            <div class="profile-ratings panel">
+              <h4>Ratings:</h4>
+              <dl>
+                <dd><div class="positive-rating"></div><h5>Positive:</h5> </dd>
+                <dd><div class="neutral-rating"></div><h5>Neutral:</h5> </dd>
+                <dd><div class="negative-rating"></div><h5>Negative:</h5> </dd>
+              </dl>
+            </div>
+          </div>
         </div>
         <div class="large-8 columns left">
           <% if current_user.id == @profile.id %>
@@ -56,18 +66,18 @@
                       <% else %>
                         <td>This Ad has expired</td>
                       <% end %>
-                      <td><% if ad.sold? && ad.top_bidder.rated_on != ad.id %>
+                      <td><% if ad.sold? && ad.top_bidder.id != ad.user.id %>
                         <a href="#" id="rate-modal">Rate Sale</a>
                       <% end %></td>
                     </tr>
-                      <div id="myModal" data-rateable-id="<%= ad.top_bidder.id %>" data-rateable-type="<%= ad.top_bidder.class.name %>" data-ad-id="<%= ad.id %>" class="reveal-modal" data-reveal>
-                        <div id="container-<%= ad.top_bidder.id %>">
-                        <h3>Rate <%= ad.top_bidder.nick %></h3>
-                        <p>Please, give a rate to the buyer of your car, depending on the ease of the transaction.</p>
+                      <div id="myModal" data-rateable-id="<%= ad.id %>" data-rateable-type="<%= ad.class.name %>" data-ad-id="<%= ad.id %>" class="reveal-modal" data-reveal>
+                        <div id="container-<%= ad.id %>">
+                        <h3>Rate the transaction with <%= ad.top_bidder.nick %></h3>
+                        <p>Please, give a rate to the transaction for this Ad, depending on the ease of it.</p>
                          <%= select_tag "rating[rate]", options_for_select(rate, params[:rate]), :prompt => "Select Rate" %>
                          <%= text_field :rating, :comment, :placeholder => "Insert your comment", :id => "rating_comment_#{ad.top_bidder.id}"  %>
                         <a class="close-reveal-modal">&#215;</a>
-                        <a id="user-rate" data-rateable-id="<%= ad.top_bidder.id %>" data-rateable-type="<%= ad.top_bidder.class.name %>" href="#">Rate this user</a>
+                        <a id="ad-rate" data-rateable-id="<%= ad.id %>" data-rateable-type="<%= ad.class.name %>" href="#">Rate this transaction</a>
                         </div>
                       </div>
                     <% end %>

@@ -3,8 +3,7 @@ require 'spec_helper'
 describe RatingsController do
 
   before do
-    @seller = User.make!
-    @buyer = User.make!
+    @ad = Ad.make!
   end
 
   context "create the rate for the correct rateable model" do
@@ -16,17 +15,17 @@ describe RatingsController do
       @valid_params = { :rating => {
         :comment => @comment,
         :rate => @rate,
-        :rateable_id => @buyer.id,
-        :rateable_type => "User"
+        :rateable_id => @ad.id,
+        :rateable_type => "Ad"
       }}
 
       post :create, @valid_params
     end
 
     it "should have the correct rating" do
-      @buyer.reload
-      @buyer.ratings.first.rate.should eq(@rate)
-      @buyer.ratings.first.comment.should eq(@comment)
+      @ad.reload
+      @ad.ratings.first.rate.should eq(@rate)
+      @ad.ratings.first.comment.should eq(@comment)
     end
   end
 

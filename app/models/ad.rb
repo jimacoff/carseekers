@@ -27,6 +27,7 @@ class Ad < ActiveRecord::Base
   has_one :car
   has_many :bids
   has_many :messages
+  has_many :ratings, :as => :rateable
 
   scope :active, Proc.new { where("ends > ?", Time.now) }
   scope :expired, Proc.new { where("ends < ?", Time.now) }
@@ -76,7 +77,6 @@ class Ad < ActiveRecord::Base
   def set_bid
     unless self.top_bid
       bid = Bid.new
-      bid.user = current_user
       bid.highest = self.starting_price
       bid.save
       self.bids << bid

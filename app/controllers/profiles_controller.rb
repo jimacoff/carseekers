@@ -13,6 +13,7 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find(params[:id])
     @profile.update_attributes(profile_params)
+    @ads = @profile.user.ads
     render :index
   end
 

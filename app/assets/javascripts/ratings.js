@@ -19,7 +19,7 @@ $(document).ready(function() {
 
   var _this = this;
 
-  $('#user-rate').on("click", function(e){
+  $('#ad-rate').on("click", function(e){
     e.preventDefault();
     rateable_id = $(this).attr("data-rateable-id");
     rateable_type = $(this).attr("data-rateable-type");
