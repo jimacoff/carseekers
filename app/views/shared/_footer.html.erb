@@ -3,7 +3,7 @@
   <div class="medium-2 columns">
     <ul class="side-nav left">
       <li class="footer-ad-title"><h5><%= a.car.make.name %> - <%=  a.car.model.name  %></h5></li>
-      <li class="image-thumb"><a href="<%= a.images.first.carphoto_url %>"><img src="<%= a.images.first.carphoto.thumb.url %>"></a></li>
+      <li class="image-thumb"><a href="<%= user_ad_path(:user_id => a.user.id, :id => a.id) %>"><img src="<%= a.images.first.carphoto.thumb.url %>"></a></li>
     </ul>
   </div>
   <% end %>
