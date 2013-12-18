@@ -29,6 +29,7 @@ source 'https://rubygems.org'
   gem 'geocoder'
   gem 'gmaps4rails'
   gem 'fog'
+  gem 'unf'
 
   # Schema info in models
   gem 'annotate'
