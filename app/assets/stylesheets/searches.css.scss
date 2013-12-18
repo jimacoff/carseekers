@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.search-wrapper {
+  float: left;
+}
+
 #more-search-trigger {
   display: block;
   margin: 1rem 0 0 0;
