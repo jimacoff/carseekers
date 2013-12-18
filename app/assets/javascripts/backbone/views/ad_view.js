@@ -43,12 +43,11 @@ app.views.AdsView = Backbone.View.extend({
   },
 
   addMarker: function(lat, lng, title) {
-    var iconBase = '/assets/';
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(lat, lng),
       map: map,
       title: title,
-      icon: iconBase + 'car.ico'
+      icon: "http://i42.tinypic.com/2uemao7.png"
     });
     return marker;
   },
