@@ -82,7 +82,7 @@ Image.blueprint(:with_file) do
 end
 
 Bid.blueprint do
-  highest { 2000.00 }
+  highest { 3500.00 }
   user_id { 1 }
 end
 

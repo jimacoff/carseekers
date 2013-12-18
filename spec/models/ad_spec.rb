@@ -162,12 +162,8 @@ describe Ad do
       @lowest_amount = 2200.00
       @bidder_max = User.make!
       @bidder_min = User.make!
-      @ad_expired = Ad.make!(:expired)
       @highest_bid = Bid.make!(:user_id => @bidder_max.id, :highest => @highest_amount)
       @lowest_bid = Bid.make!(:user_id => @bidder_min.id, :highest => @lowest_amount)
-
-      @ad_expired.bids << @highest_bid
-      @ad_expired.bids << @lowest_bid
 
       @ad.bids << @highest_bid
       @ad.bids << @lowest_bid
@@ -181,7 +177,25 @@ describe Ad do
 
     it "sold should let you know the status of the ad" do
       @ad.sold?.should eq(false)
-      @ad_expired.sold?.should eq(true)
+    end
+  end
+
+  context "Ad will know if it has a bid" do
+    before do
+      @user = User.make!
+      @user.ads << @ad
+      @user.save!
+      @bid = @ad.bids.first
+      @bid.highest = 4000.00
+      @buyer = User.make!
+      @bid.user_id = @buyer.id
+      @bid.save!
+      @ad.bids << @bid
+      @ad.save!
+    end
+
+    it "should return a boolean depending of there is a bid on the ad" do
+      @ad.has_bid?.should eq(true)
     end
   end
 

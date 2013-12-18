@@ -104,12 +104,12 @@ class Ad < ActiveRecord::Base
     Bid.where('ad_id = ? ', self.id).maximum(:highest)
   end
 
+  def has_bid?
+    self.top_bidder != self.user && self.top_bid > self.starting_price
+  end
+
   def sold?
-    unless self.active? && self.top_bidder != self.user && self.top_bid > self.starting_price
-      true
-    else
-      false
-    end
+    !self.active? && self.has_bid?
   end
 
   private
