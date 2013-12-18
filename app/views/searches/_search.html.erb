@@ -1,5 +1,5 @@
 <section class="large-12 columns search-wrapper">
-  <div class="large-6 columns panel callout radius search-box">
+  <div class="large-12 columns panel callout radius search-box">
     <h2><%= title %></h2>
     <%= form_tag '/search', method: "get" do %>
       <%= collection_select :search, :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
