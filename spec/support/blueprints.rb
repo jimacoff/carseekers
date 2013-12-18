@@ -83,6 +83,7 @@ end
 
 Bid.blueprint do
   highest { 2000.00 }
+  user_id { 1 }
 end
 
 Rating.blueprint do

@@ -1,10 +1,12 @@
 Given(/^that there is already another message$/) do
   @message = Message.make!
   @sender = User.make!
-  @ad = Ad.make!
   @ad.car = Car.make!
+  @ad = Ad.first
   @ad.car.make = Make.make!
   @ad.car.model = Model.make!
+  @ad.bids.first.user_id = 1
+  @ad.bids.first.save!
   @ad.save!
   @message.from_id = @sender.id
   @message.ad = @ad

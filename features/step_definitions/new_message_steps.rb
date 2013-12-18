@@ -4,6 +4,8 @@ end
 
 Given(/^that there is already an ad$/) do
   @ad = Ad.make!
+  @ad.bids.first.user_id = 1
+  @ad.bids.first.save!
   @make = Make.make!
   @model = Model.make!
   @car = Car.make!

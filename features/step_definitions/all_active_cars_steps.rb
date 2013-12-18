@@ -1,6 +1,11 @@
 Given(/^there is already an active Ad$/) do
   @ad = Ad.make!
   @ad.active = true
+  @bid = Bid.make!
+  @bid.user_id = 1
+  @bid.save!
+  @expired = Ad.make!(:expired)
+  @ad.bids << @bid
   @ad.save!
 end
 
