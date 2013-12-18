@@ -63,8 +63,8 @@ class Ad < ActiveRecord::Base
       ad.mailed = true
       ad.save!
       if ad.sold?
-        self.winner_id = ad.top_bidder.id
-        self.save!
+        ad.winner_id = ad.top_bidder.id
+        ad.save!
         BidMailer.winner(ad.top_bidder, ad).deliver
         BidMailer.sold(ad.user, ad).deliver
       else

@@ -24,8 +24,8 @@ describe RatingsController do
 
     it "should have the correct rating" do
       @ad.reload
-      @ad.ratings.first.rate.should eq(@rate)
-      @ad.ratings.first.comment.should eq(@comment)
+      @ad.rating.rate.should eq(@rate)
+      @ad.rating.comment.should eq(@comment)
     end
   end
 
