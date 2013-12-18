@@ -14,7 +14,7 @@ $(document).ready(function() {
     var make_id = $("#search_make_id").val();
     var model_id = $("#search_model_id").val();
     var postcode = $("#search_postcode").val();
-    collection.url = "/search/map";
+    collection.url = "/search";
 
     collection.fetch({
       data: {

@@ -10,23 +10,16 @@ class SearchesController < ApplicationController
     @results = @results.by_hp(search_params[:hp]) unless search_params[:hp].empty?
     @results = @results.by_style(search_params[:style]) unless search_params[:style].empty?
     @results = @results.by_color(search_params[:color]) unless search_params[:color].empty?
-    @ads = @results.paginate(:page => params[:page], :per_page => 5)
-    @title = "Search Results"
-    render 'ads/index', :locals => { :ads => @ads, :title => @title }
-  end
-
-  def map
-    @results = Ad.active
-    @results = @results.with_model(search_params[:model_id])
-    @results = @results.by_fuel(search_params[:fuel_type]) unless search_params[:fuel_type].empty?
-    @results = @results.by_engine(search_params[:engine]) unless search_params[:engine].empty?
-    @results = @results.by_age(search_params[:age]) unless search_params[:age].empty?
-    @results = @results.by_hp(search_params[:hp]) unless search_params[:hp].empty?
-    @results = @results.by_style(search_params[:style]) unless search_params[:style].empty?
-    @results = @results.by_color(search_params[:color]) unless search_params[:color].empty?
-    @results = @results.near(search_params[:postcode])
     respond_to do |format|
-      format.js { render :json => @results }
+      format.js do
+        @results = @results.near(search_params[:postcode])
+        render :json => @results
+      end
+      format.html do
+        @ads = @results.paginate(:page => params[:page], :per_page => 5)
+        @title = "Search Results"
+        render 'ads/index', :locals => { :ads => @ads, :title => @title }
+      end
     end
   end
 

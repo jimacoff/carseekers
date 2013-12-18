@@ -10,14 +10,15 @@ class AdsController < ApplicationController
   end
 
   def index
-    @ads = Ad.active.paginate(:page => params[:page], :per_page => 5).order('id DESC')
-    @title = "Latest Auctions"
-  end
-
-  def map
-    @ads = Ad.active.paginate(:page => params[:page], :per_page => 5).order('id DESC')
     respond_to do |format|
-      format.js { render :json => @ads }
+      format.js do
+        @ads = Ad.active
+        render :json => @ads
+      end
+      format.html do
+        @ads = Ad.active.paginate(:page => params[:page], :per_page => 5).order('id DESC')
+        @title = "Latest Auctions"
+      end
     end
   end
 
