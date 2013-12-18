@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def ads_footer
+    Ad.all.limit(6)
+  end
+
   def rate
     [['Negative', 1], ['Neutral', 2], ['Positive', 3]]
   end

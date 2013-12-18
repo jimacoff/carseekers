@@ -47,7 +47,7 @@ app.views.AdsView = Backbone.View.extend({
       position: new google.maps.LatLng(lat, lng),
       map: map,
       title: title,
-      icon: "http://i42.tinypic.com/2uemao7.png"
+      icon: "images/marker.png"
     });
     return marker;
   },
