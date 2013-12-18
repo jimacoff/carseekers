@@ -28,6 +28,7 @@ source 'https://rubygems.org'
   gem 'foundation-will_paginate'
   gem 'geocoder'
   gem 'gmaps4rails'
+  gem 'fog'
 
   # Schema info in models
   gem 'annotate'
