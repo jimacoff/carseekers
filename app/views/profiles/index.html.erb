@@ -8,9 +8,9 @@
             <div class="profile-ratings panel">
               <h4>Ratings:</h4>
               <dl>
-                <dd><div class="positive-rating"></div><h5>Positive:</h5> </dd>
-                <dd><div class="neutral-rating"></div><h5>Neutral:</h5> </dd>
-                <dd><div class="negative-rating"></div><h5>Negative:</h5> </dd>
+                <dd><div class="positive-rating"></div><h5>Positive:</h5> <%= positives(@profile) %></dd>
+                <dd><div class="neutral-rating"></div><h5>Neutral:</h5>  <%= neutrals(@profile) %> </dd>
+                <dd><div class="negative-rating"></div><h5>Negative:</h5>  <%= negatives(@profile) %></dd>
               </dl>
             </div>
           </div>

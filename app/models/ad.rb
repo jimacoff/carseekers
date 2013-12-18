@@ -27,7 +27,8 @@ class Ad < ActiveRecord::Base
   has_one :car
   has_many :bids
   has_many :messages
-  has_many :ratings, :as => :rateable
+  has_one :rating, :as => :rateable
+  belongs_to :winner, :class_name => "User", :foreign_key => "winner_id"
 
   scope :active, Proc.new { where("ends > ?", Time.now) }
   scope :expired, Proc.new { where("ends < ?", Time.now) }
@@ -62,6 +63,8 @@ class Ad < ActiveRecord::Base
       ad.mailed = true
       ad.save!
       if ad.sold?
+        self.winner_id = ad.top_bidder.id
+        self.save!
         BidMailer.winner(ad.top_bidder, ad).deliver
         BidMailer.sold(ad.user, ad).deliver
       else

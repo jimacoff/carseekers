@@ -36,6 +36,7 @@ describe User do
     it { should have_many(:bids) }
     it { should have_many(:received_messages) }
     it { should have_many(:sent_messages) }
+    it { should have_many(:wins) }
   end
 
   context "creates a profile" do

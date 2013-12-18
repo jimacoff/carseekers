@@ -28,7 +28,7 @@ describe Ad do
     it { should have_one(:car) }
     it { should have_many(:bids) }
     it { should have_many(:messages) }
-    it { should have_many(:ratings) }
+    it { should have_one(:rating) }
   end
 
   before do
