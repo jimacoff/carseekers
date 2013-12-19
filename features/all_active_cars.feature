@@ -6,6 +6,5 @@ Feature: All active cars
     And there is already an active Ad
 
   Scenario: A User sees all the active ads
-    Given that he is on the homepage
     And he clicks on "Latest auctions"
     Then he should see just the active car

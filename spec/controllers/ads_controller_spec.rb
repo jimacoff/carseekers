@@ -11,7 +11,8 @@ describe AdsController do
     before do
       @title = "Audi TT Roadster"
       @valid_params = { :ad => {
-        :title => @title
+        :title => @title,
+        :user_id => @user.id
       }}
 
       post :create, @valid_params.merge(:user_id => @user.id)
@@ -30,14 +31,14 @@ describe AdsController do
     before do
       @previous_title = "Audi AFOUR"
       @new_title = "Audi A4"
-      @ad = Ad.create(:title => @previous_title)
-      @user.ads << @ad
+      @ad = Ad.make!(:complete)
+      @ad.title = @previous_title
 
       @valid_params = { :ad => {
         :title => @new_title
       }}
 
-      patch :update, @valid_params.merge(:user_id => @user.id, :id => @user.ads.first.id)
+      patch :update, @valid_params.merge(:user_id => @ad.user.id, :id => @ad.id)
     end
 
     it "should have modified the previous information" do
@@ -97,6 +98,7 @@ describe AdsController do
       @make = Make.make!
       @model = Model.make!
       @valid_params = { :ad => {
+        :user_id => @user.id,
         :car_attributes => {
           :make_id => @make.id,
           :model_id => @model.id

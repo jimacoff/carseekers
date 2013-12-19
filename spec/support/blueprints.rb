@@ -6,10 +6,6 @@ User.blueprint do
   password { "password" }
 end
 
-User.blueprint(:complete) do
-  ad(:complete)
-end
-
 Message.blueprint do
   subject { Faker::Lorem.words(rand(2..4)).join(' ') }
   content { Faker::Lorem.sentences(rand(3..5)).join(' ') }
@@ -23,10 +19,12 @@ Ad.blueprint do
   ends { Time.now + 7.days }
   mailed { false }
   car
+  user
 end
 
 Ad.blueprint(:complete) do
-  car(:complete)
+  car { Car.make!(:complete) }
+  user { User.make! }
 end
 
 Ad.blueprint(:expired) do
