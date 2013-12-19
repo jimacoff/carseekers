@@ -30,6 +30,7 @@ source 'https://rubygems.org'
   gem 'gmaps4rails'
   gem 'fog'
   gem 'unf'
+  gem 'erd'
 
   # Schema info in models
   gem 'annotate'

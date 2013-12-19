@@ -58,14 +58,14 @@
 
     <div><%= f.label :upload_pictures %><br />
     <div class="row">
-        <section class="panel small-offset-1 large-10 large-centered clearfix">
+        <section class="panel large-10 large-centered medium-10 medium-centered medium-offset-1 clearfix">
           <dd>
             <%= f.fields_for :images do |img| %>
               <% if img.object.carphoto.thumb.url %>
-                <dl class="large-2 columns"><img src="<%= img.object.carphoto.thumb.url %>">
+                <dl class="large-2 medium-2 columns"><img src="<%= img.object.carphoto.thumb.url %>">
                 <%= img.check_box :_destroy %> Remove</dl>
               <% else %>
-                <dl class="large-4 columns"><%= img.file_field :carphoto %></dl>
+                <dl class="large-4 medium-4 columns"><%= img.file_field :carphoto %></dl>
               <% end %>
             <% end %>
           </dd>
