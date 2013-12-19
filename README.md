@@ -17,6 +17,9 @@ Funcionalities:
   ·· Sellers, see who is bidding on your car and see whats the highest amount
   ·· Find car by Make Model and Display it on Google Maps on the homepage
   ·· See a list of all the cars, and redefine it by all the options that a car can have!
+  ·· Messages and Replies
+  ·· Ratings and comments
+  ·· Many more, and so much more to come :)
 
 Technoligies used: Ruby on Rails, Backbone.js, Underscore.js, jQuery, Vanila JavaScript, HTML5, CSS3, Foundation, Responsive Design, ClockWork, ActionMailer, Devise, OAuth2 Google Authentication, CarrierWave Image uploader to AWS... and many more!
 
