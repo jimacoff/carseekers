@@ -30,11 +30,12 @@ class Ad < ActiveRecord::Base
   has_one :rating, :as => :rateable
   belongs_to :winner, :class_name => "User", :foreign_key => "winner_id"
 
+  #Scope for itself
   scope :active, Proc.new { where("ends > ?", Time.now) }
   scope :expired, Proc.new { where("ends < ?", Time.now) }
   scope :finished, Proc.new { where("ends < ? AND mailed = false", Time.now) }
 
-  #Scope Car Attrs
+  #Scope Car Atributes
   scope :by_fuel, Proc.new { |fuel_type| joins(:car).where("fuel_type = ?", fuel_type) }
   scope :by_engine, Proc.new { |engine| joins(:car).where("engine = ?", engine) }
   scope :by_age, Proc.new { |age| joins(:car).where("age = ?", age) }
@@ -57,6 +58,7 @@ class Ad < ActiveRecord::Base
   after_save :images_holder
   after_validation :geocode
 
+  #Mail sender (recommended to run with clockwork)
   def self.mail_to
     finished = self.finished
     finished.map do |ad|
@@ -77,6 +79,7 @@ class Ad < ActiveRecord::Base
     self.created_at < self.ends
   end
 
+  #Sets the starting bid on the ad
   def set_bid
     unless self.top_bid
       bid = Bid.new
@@ -87,6 +90,7 @@ class Ad < ActiveRecord::Base
     end
   end
 
+  #Sets the file uploader to allow upload 5 images
   def images_holder
     images_quantity = self.images.count
     if images_quantity < 5
@@ -97,10 +101,12 @@ class Ad < ActiveRecord::Base
     end
   end
 
+  #Returns the object of the User that has the highest bid on that particular ad object
   def top_bidder
     User.find(self.bids.find_by_highest(self.top_bid).user_id)
   end
 
+  #Returns the !amount! of the highest bid on the ad
   def top_bid
     Bid.where('ad_id = ? ', self.id).maximum(:highest)
   end

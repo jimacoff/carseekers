@@ -5,6 +5,7 @@
       <div class="large-6 medium-6 left image-holder">
         <a href="#"><img src="<%= @ad.images.first.carphoto.main.url %>" class="ad-main-image"></a>
       </div>
+
       <section class="large-6 medium-6 columns bidder-wrap">
         <div class="panel bidder">
           <dl>
@@ -32,12 +33,13 @@
             </dl>
           </div>
         </section>
+
       </div>
       <div class="row">
         <section class="panel large-12 medium-12 columns">
           <ul class="clearing-thumbs" data-clearing>
             <% @ad.images.each do |image| %>
-            <li class="image-thumb"><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>"></a></li>
+            <li class="image-thumb"><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>" alt="Car Photo"></a></li>
             <% end %>
           </ul>
         </section>

@@ -1,5 +1,7 @@
 module ProfilesHelper
 
+#Returns Rates Q for that particular profile (user)
+
   def positives(profile)
     positives = 0
     profile.user.wins.each do |a|

@@ -43,7 +43,6 @@ module ApplicationHelper
   end
 
   #Devise from everywhere!
-
   def resource_name
     :user
   end

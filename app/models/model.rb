@@ -11,6 +11,8 @@
 #
 
 class Model < ActiveRecord::Base
+
+  #Associations
   belongs_to :make
   has_many :cars
 end

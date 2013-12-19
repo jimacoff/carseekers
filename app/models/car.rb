@@ -18,6 +18,8 @@
 #
 
 class Car < ActiveRecord::Base
+
+  #Associations
   belongs_to :ad
   belongs_to :make
   belongs_to :model

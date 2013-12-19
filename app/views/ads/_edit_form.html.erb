@@ -74,5 +74,6 @@
     <div><%= f.submit "Update Ad", :class => "button [success small radius round]" %></div>
 
 <% end %>
+
     <p>Sold it already? <%= button_to "Remove my add", user_ad_path(:user_id => current_user.id, :id => @ad.id), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => "button [success alert small radius round]"  %></p>
 

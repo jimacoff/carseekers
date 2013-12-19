@@ -12,5 +12,7 @@
 #
 
 class Rating < ActiveRecord::Base
+
+  #Associations
   belongs_to :rateable, :polymorphic => true
 end
