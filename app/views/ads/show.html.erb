@@ -1,11 +1,11 @@
 <div class="row">
-  <section class="large-9 columns">
+  <section class="large-9 medium-9 columns">
     <h1><%= @ad.title %></h1>
     <div class="row">
-      <div class="large-6 left image-holder">
+      <div class="large-6 medium-6 left image-holder">
         <a href="#"><img src="<%= @ad.images.first.carphoto.main.url %>" class="ad-main-image"></a>
       </div>
-      <section class="large-6 columns bidder-wrap">
+      <section class="large-6 medium-6 columns bidder-wrap">
         <div class="panel bidder">
           <dl>
             <% if current_user %>
@@ -34,7 +34,7 @@
         </section>
       </div>
       <div class="row">
-        <section class="panel large-12 columns">
+        <section class="panel large-12 medium-12 columns">
           <ul class="clearing-thumbs" data-clearing>
             <% @ad.images.each do |image| %>
             <li class="image-thumb"><a href="<%= image.carphoto_url %>"><img src="<%= image.carphoto.thumb.url %>"></a></li>
@@ -43,7 +43,7 @@
         </section>
       </div>
       <div class="row">
-        <section class="large-12 columns panel car-info">
+        <section class="large-12 medium-12 columns panel car-info">
           <dd>
             <dt><h4>Car Info</h4></dt>
             <dl><strong>Make</strong>: <%= @ad.car.make.name %></dl>
@@ -58,7 +58,7 @@
         </section>
       </div>
        <div class="row">
-        <section class="large-12 columns panel car-info">
+        <section class="large-12 medium-12 columns panel car-info">
           <dd>
             <dt><h4>Location Info</h4></dt>
             <dl><strong>City</strong>: <%= @ad.city %></dl>
@@ -71,7 +71,7 @@
         <p class="text-justify"><%= @ad.description %></p>
       </div>
     </section>
-    <div class="large-3 columns right">
+    <div class="large-3 medium-3 columns right">
       <div class="panel ad-user-info">
         <h3>Seller Info:</h3>
         <%= image_tag gravatar_picture_url(@ad.user, 120), :class => "ad-user-picture" %>
@@ -81,7 +81,7 @@
           <% unless @ad.user.id == current_user.id %>
             <div class="row">
             <dd><h4>Contact:</h4></dd>
-              <div class="large-12 left">
+              <div class="large-12 medium-12 left">
                 <%= form_for @message, :url => messages_path(current_user, @message) do |f| %>
                   <%= render :partial => 'messages/new_message', :locals => { :message => @message, :ad => @ad, :f => f } %>
                 <% end %>

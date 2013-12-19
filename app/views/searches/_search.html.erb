@@ -1,6 +1,6 @@
-<section class="large-10 columns search-wrapper">
-  <div class="large-12 columns panel callout radius search-box">
-    <h2><%= title %></h2>
+<section class="large-10 medium-10 columns search-wrapper">
+  <div class="large-12 medium-12 columns panel callout radius search-box">
+    <h3><%= title %></h3>
     <%= form_tag '/search', method: "get" do %>
       <%= collection_select :search, :make_id, Make.order(:name), :id, :name, :prompt => "Select Make" %>
       <%= collection_select :search, :model_id, Model.order(:name), :id, :name, :prompt => "Select Model" %>
@@ -17,7 +17,7 @@
     <% end %>
     <% if onmap %>
       <div class="postcode-holder">
-        <h3>See the closets cars to you!</h3>
+        <h4>See the closets cars to you!</h4>
         <%= text_field :search, :postcode, :placeholder => "Insert your postcode" %>
         <%= submit_tag "Show on map!", :class => "button [success small radius round] search-map-button", :id => "map-trigger" %>
       </div>
